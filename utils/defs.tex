@@ -40,7 +40,11 @@
 \newcommand{\Cpp}{\textit{C++}}
 \newcommand{\Celev}{\textit{C11}}
 \newcommand{\TYPE}{\emph{TYPE}}
-\newcommand{\TYPENAME}{\emph{TYPENAME}}
+\newcommand{\TYPENAME}{\emph{TYPE}}
+\newcommand{\ColHead}[1]{\textbf{#1}}
+\newcommand{\DATATYPENAME}[1]{\emph{#1}}
+\newcommand{\METHODNAME}[1]{\emph{#1}}
+\newcommand{\VARTYPE}[1]{\textit{#1}}
 \newcommand{\SIZE}{\emph{SIZE}}
 
 \newcommand{\source}{\textit{source}}
@@ -277,6 +281,22 @@ minus .2ex}{-1em}{\normalsize\sf}}
 \begin{description}
 \vspace{-1em}
 \item[API description] \hfill \\ 
+    #1
+\hfill
+}
+
+\newcommand{\typedescription}[1]{
+\begin{description}
+\vspace{-1em}
+\item[Datatype description] \hfill \\ 
+    #1
+\hfill
+}
+
+\newcommand{\structdescription}[1]{
+\begin{description}
+\vspace{-1em}
+\item[Data structure description] \hfill \\ 
     #1
 \hfill
 }
