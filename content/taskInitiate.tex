@@ -1,32 +1,38 @@
 \apisummary{
-    
+ Invoked on the host to launch a quantum kernel on the quantum device.   
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-
+Handle taskInitiate(Observable *observable, Kernel *kernel, Objective *objective, Optimizer *optimizer)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-
+Handle qcore::taskInitiate(Observable *observable, Kernel *kernel, Objective *objective, Optimizer *optimizer)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{observable}{A rule that defines the basis for the measurement after the kernel has been executed on the quantum hardware}
+    \apiargument{IN}{kernel}{The quantum kernel to be executed as part of the objective function evaluation}
+    \apiargument{IN}{objective}{A parameterized user defined function transforming input data into an output result}
+    \apiargument{IN}{optimizer}{Takes an objective function as input and outputs the optimal function parameters and associated function value}
 \end{apiarguments}
 
 \apidescription{
-    
+The taskInitiate call is invoked on the host to launch a quantum kernel on the quantum device. The taskInitiate call references the observable data structure, the initial quantum state, the objective function, and the classical optimizer. After a quantum kernel has been launched, host execution continues until the host reaches a sync call.    
 }
 
 \apireturnvalues{
-    use shmem tex files as a guide
+    Handle for the quantum kernel launched by the taskInitiate call.
 }      
 
 \apinotes{
-    
+Although from a high level of abstraction, the kernel executes on the quantum
+device, with variational quantum computing the underlying implementation may iterate         
+execution between the quantumand host devices, with the host performing classical optimization based on 
+measurements from the quantum device.   
 }
 
 \begin{apiexamples}
