@@ -5,7 +5,7 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-
+*Qresult_buf sync(Qhandle qh)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
@@ -14,15 +14,15 @@
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{qh}{Handle for the quantum kernel launched by the QKernelInitiate call}
 \end{apiarguments}
 
 \apidescription{
-    
+    This a blocking execution call.  The sync call is initiated from the host device.  It blocks until the terminating condition of the objective function has been met.
 }
 
 \apireturnvalues{
-    use shmem tex files as a guide
+    Result vector output containing the all objective function values
 }      
 
 \apinotes{
