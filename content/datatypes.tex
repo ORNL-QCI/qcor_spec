@@ -5,17 +5,22 @@ The \qcor specification has a set of datatypes that enable the expression of qua
 
 \begin{tabular}{|l|l|l|}
 \hline 
-\ColHead{Datatype} & \ColHead{Value} & \ColHead{Purpose} \\
+\ColHead{Datatype} & \ColHead{Description} \\
 \hline 
 \hline 
-\DATATYPENAME{Observable} &   & \\
+\DATATYPENAME{Observable} & Specifies the evaluation of a hermitian or non hermitian operator\\
 \hline 
-\DATATYPENAME{ObservableTransform} &   &  \\
+\DATATYPENAME{ResultsBuffer} & contains the measurement results from a single quantum execution\\
 \hline 
-\DATATYPENAME{ObjectiveFunction} &   &  \\
+\DATATYPENAME{ObservableTransform} & stores the method for mapping an observable to another observable\\
 \hline 
-\DATATYPENAME{ResultsBuffer} &   &  \\
+\DATATYPENAME{Kernel} & function pointer to a high level representation of the quantum program\\
 \hline 
 \end{tabular}
 
 \medskip{}
+
+
+%Composite datatype
+\DATATYPENAME{ObjectiveFunction} & Captures the behavior of a parameterizable function. It is initialized with the problem-specific observable and kernel, and exposes a method to evaluate the kernel given a set of parameters and executes general pre and post processing of the kernel execution\\
+\hline
