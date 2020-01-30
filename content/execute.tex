@@ -5,24 +5,24 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-
+    void execute (Handle *hdl)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-
+    void qcor::execute (Handle *hdl)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{hdl}{Handle created from the initial taskInitiate call.}
 \end{apiarguments}
 
 \apidescription{
-    
+    This re-executes the quantum kernel associated after a taskInitiate and sync have already been called.  This requires a subsequent sync call to get results of a re-execution.  
 }
 
 \apireturnvalues{
-    use shmem tex files as a guide
+    
 }      
 
 \apinotes{
