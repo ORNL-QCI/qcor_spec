@@ -5,16 +5,17 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-
+    Observable createObservable (ObservableTransform *observeTrans)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-
+    Observable qcor::createObservable (ObservableTransform *observeTrans)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{observeTrans}{User defined ObservableTransform that contains the method to generate an observable type.}    
+    \apiargument{OUT}{\phantom{name}}{Pointer to an observable type}
 \end{apiarguments}
 
 \apidescription{
