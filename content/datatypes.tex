@@ -19,21 +19,24 @@ Note: (TODO) Move the Kernel to the appropriate spec location
 
 %Enumerated Types
 \DATATYPENAME{OperatorType} & 
-NOTE: (TODO) enumerate different observable types
-Fermionic 
+NOTE: (TODO) enumerate different observable types 
 Pauli
 FieldOperator
-Clause/CostFunction
+
 
 
 %Composite datatype
 \DATATYPENAME{ObjectiveFunction} & Captures the behavior of a parameterizable function. It is initialized with the problem-specific observable and kernel, and exposes a method to evaluate the kernel given a set of parameters and executes general pre and post processing of the kernel execution\\
 \hline
-\DATATYPENAME{Observable} & stores the data to describe an observable that can be used to map an observable to another observable.  Members are an OperatorType, and a CompositeOperator.\\
+\DATATYPENAME{Observable} & is a Pauli obsevable, stores the data to describe an observable that can be used to map an observable to another observable.  Can be assigned from a CompositeOperator or the observableTransform routine.\\
 
 \hline
 \DATATYPENAME{ResultsBuffer} & contains the measurement results from a single quantum execution\\
 Note: (TODO) Define the methods in the data structure.
 \hline 
-\DATATYPENAME{BasicPauliOperator} & type with three attributes: PauliX, PauliY or PauliZ, site/spatial index which is an integer value, coefficient float value
-\DATATYPENAME{GenericOperator} & type with three attributes: PauliX, PauliY or PauliZ, site/spatial index which is an integer value, coefficient float value
+\DATATYPENAME{PauliOperator} & single operator type with three attributes: PauliX, PauliY or PauliZ, site/spatial index which is an integer value, coefficient float value
+\hline
+\DATATYPENAME{FieldOperator} & single operator type with four attributes: creation or anihilation, exchangeStatistics, site/spatial index which is an integer value, coefficient float value
+\hline
+
+
