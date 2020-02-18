@@ -1,5 +1,5 @@
 \apisummary{
-    
+    routine to compose a composite operator from basic or composite operators
 }
 
 \begin{apidefinition}
@@ -14,8 +14,12 @@
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
-    
+    \apiargument{IN}{compOp}{list of composite operators}
+    \apiargument{IN}{pauliOp}{list of single Pauli operators}
+    \apiargument{IN}{fieldOp}{list of single Field operators}
+    \apiargument{IN}{ops}{list of operations}
+    \apiargument{IN}{seq}{describes the sequence to apply an operation to operator}
+    \apiargument{OUT}{compOpRes}
 \end{apiarguments}
 
 \apidescription{
