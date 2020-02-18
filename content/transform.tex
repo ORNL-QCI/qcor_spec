@@ -1,20 +1,22 @@
 \apisummary{
-    
+    method to transform composite orperators that are pauli or field operators to a pauli observable
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-
+Observable observableTransform(compositeOperator* compOp, void* modifier)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-
+Observable observableTransform(map<compositeOperator, compositeOperator> compOp, void* modifier)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{compOp}{list of variable of compositeOperator type}
+    \apiargument{IN}{modifier}{an additional transformation on a pauli composite operator. This is a function pointer that implements additional transformations on the Pauli observable produced by \FUNC{observableTransform}. The function header should accept the Observable type}
+    \apiargument{OUT}{oberservable}{}
 \end{apiarguments}
 
 \apidescription{
@@ -32,7 +34,7 @@
 \begin{apiexamples}
 
 \apicppexample
-    { This is a simple program that calls \FUNC{transform}: } 
+    { This is a simple program that calls \FUNC{observableTransform}: } 
     { example_code/transform_ex.cpp} 
     {}
 
