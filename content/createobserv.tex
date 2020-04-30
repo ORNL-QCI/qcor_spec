@@ -14,8 +14,11 @@
 
 
 \begin{apiarguments}
-    \apiargument{IN}{observeTrans}{User defined ObservableTransform that contains the method to generate an observable type.}    
-    \apiargument{OUT}{\phantom{name}}{Pointer to an observable type}
+    \apiargument{IN}{observIn}{list of observable}
+    \apiargument{IN}{pauliOp}{list of single Pauli operators}
+    \apiargument{IN}{fieldOp}{list of single Field operators}
+    \apiargument{IN}{ops}{list of operations}
+    \apiargument{OUT}{observ}{observable output}
 \end{apiarguments}
 
 \apidescription{
