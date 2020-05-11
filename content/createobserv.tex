@@ -1,32 +1,32 @@
 \apisummary{
-    
+    Creates an observable
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    Observable createObservable (ObservableTransform *observeTrans)
+    Observable createObservable (Observable *observIn, PauliOperator *pauliOp, FieldOperator *fieldOp, AlgebraicOperation *ops)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    Observable qcor::createObservable (ObservableTransform *observeTrans)
+    Observable qcor::createObservable (Observable observIn[], PauliOperator pauliOp[], FieldOperator fieldOp[], AlgebraicOperation ops[])
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{observIn}{list of observable}
-    \apiargument{IN}{pauliOp}{list of single Pauli operators}
-    \apiargument{IN}{fieldOp}{list of single Field operators}
+    \apiargument{IN}{observIn}{array of observable}
+    \apiargument{IN}{pauliOp}{array of single Pauli operators}
+    \apiargument{IN}{fieldOp}{array of single Field operators}
     \apiargument{IN}{ops}{list of operations}
-    \apiargument{OUT}{observ}{observable output}
+    \apiargument{OUT}{\DATATYPENAME{Observable}{observable output}
 \end{apiarguments}
 
 \apidescription{
-    
+        \FUNC{createObservable} creates a new \DATATYPENAME{Observable}, \VAR{observ}. The arrays \VAR{observIn}, \VAR{pauliOp}, and \VAR{fieldOp} are all optional, but a combination of one of more of these arrays must be passed to create a new \DATATYPENAME{Observable}. \VAR{ops} is also optional.  If \VAR{ops} is passed to \FUNC{createObservable}, the operations are mapped by array index to the operands listed in \VAR{observIn}, \VAR{pauliOp}, and \VAR{fieldOp}.
 }
 
 \apireturnvalues{
-    use shmem tex files as a guide
+    Returns an \DATATYPENAME{Observable} datum. 
 }      
 
 \apinotes{
