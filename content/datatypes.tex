@@ -1,44 +1,20 @@
-The \qcor specification has a set of datatypes that enable the expression of quantum concepts within the \qcor \ac{API}s.
+The \qcor specification has a set of datatypes that enable the expression of quantum concepts within the \qcor \ac{API}s.\\
 
-\medskip{}
+\subsection{\textbf{ObjectiveFunction}}\label{subsec:ObjectiveFunction}
+\DATATYPENAME{ObjectiveFunction} captures the behavior of a parameterizable function. It is initialized with the problem-specific observable and kernel, and exposes a method to evaluate the kernel given a set of parameters and executes general pre and post processing of the kernel execution.\\
 
+\subsection{\textbf{ResultsBuffer}}\label{subsec:ResultsBuffer}
+\DATATYPENAME{ResultsBuffer} contains the measurement results from a single quantum execution.\\
 
-\begin{tabular}{|l|l|l|}
-\hline 
-\ColHead{Datatype} & \ColHead{Description} \\
-\hline 
-\hline 
-\DATATYPENAME{Kernel} & function pointer to a high level representation of the quantum program\\
-Note: (TODO) Move the Kernel to the appropriate spec location
-\hline 
-\DATATYPENAME{CompositeOperator}
-\hline
-\end{tabular}
+\subsection{\textbf{Observable}}\label{subsec:Observable}
+\DATATYPENAME{Observable} is an operator built from the basic operators, PauliOperator and FieldOperator. It contains the data to algebraically relate basic and complex operations, and the measurements from the observation of the kernel execution.\\
 
-\medskip{}
+\subsection{\textbf{PauliOperator}}\label{subsec:PauliOperator}
+\DATATYPENAME{PauliOperator} is a single operator type with three attributes: PauliX, PauliY or PauliZ, site/spatial index which is an integer value, coefficient float value.\\
 
-%Enumerated Types
-\DATATYPENAME{OperatorType} & 
-NOTE: (TODO) enumerate different observable types 
-Pauli
-FieldOperator
+\subsection{\textbf{FieldOperator}}\label{subsec:FieldOperator}
+\DATATYPENAME{FieldOperator} is a single operator type with four attributes: creation or anihilation, exchangeStatistics, site/spatial index which is an integer value, coefficient float value.\\
 
-
-
-%Composite datatype
-\DATATYPENAME{ObjectiveFunction} & Captures the behavior of a parameterizable function. It is initialized with the problem-specific observable and kernel, and exposes a method to evaluate the kernel given a set of parameters and executes general pre and post processing of the kernel execution\\
-\hline
-\DATATYPENAME{Observable} &  operator built from the basic operators, PauliOperator and FieldOperator. Contains the data to algebraically relate basic and complex operations, and the measurements from the observation of the kernel execution.\\
-
-\hline
-\DATATYPENAME{ResultsBuffer} & contains the measurement results from a single quantum execution\\
-Note: (TODO) Define the methods in the data structure.
-\hline 
-\DATATYPENAME{PauliOperator} & single operator type with three attributes: PauliX, PauliY or PauliZ, site/spatial index which is an integer value, coefficient float value
-\hline
-\DATATYPENAME{FieldOperator} & single operator type with four attributes: creation or anihilation, exchangeStatistics, site/spatial index which is an integer value, coefficient float value
-\hline
-\DATATYPENAME{AlgebraicOperation} & describes operations on Pauli and Field operands
-\hline
-
+\subsection{\textbf{AlgebraicOperation}}\label{subsec:AlgebraicOperation}
+\DATATYPENAME{AlgebraicOperation}  describes operations on Pauli and Field operands.\\
 
