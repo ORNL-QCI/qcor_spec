@@ -9,3 +9,10 @@ Currently, \qcor exposes initialization, synchronization, execution and memory m
   \label{fig:exec_model}
 \end{figure*}
 
+
+\subsection{\textbf{Quantum Kernels}}\label{subsec:kernel}
+\qcor extends \CorCpp by allowing the programmer to define functions, called \FUNC{kernels}, that, when called, is executed asynchronously on the quantum device. A \FUNC{kernel} is defined using the <insert decorator> declaration specifier. 
+%TODO: provide additional details about kernel parameters
+
+The sample code below illustrates \FUNC{kernel} usage in a \CorCpp program.
+%TODO: insert example
