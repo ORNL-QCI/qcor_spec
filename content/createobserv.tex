@@ -5,28 +5,26 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    Observable createObservable (Observable *observIn, PauliOperator *pauliOp, FieldOperator *fieldOp, AlgebraicOperation *ops)
+    Observable* createObservable (PauliOperator *pauliOp, FieldOperator *fieldOp)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    Observable qcor::createObservable (Observable observIn[], PauliOperator pauliOp[], FieldOperator fieldOp[], AlgebraicOperation ops[])
+    Observable* qcor::createObservable (PauliOperator &pauliOp, FieldOperator &fieldOp)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{observIn}{array of observable}
-    \apiargument{IN}{pauliOp}{array of single Pauli operators}
-    \apiargument{IN}{fieldOp}{array of single Field operators}
-    \apiargument{IN}{ops}{list of operations}
+    \apiargument{IN}{pauliOp}{address of pre-defined Pauli operator}
+    \apiargument{IN}{fieldOp}{address of pre-defined Field operator}
     \apiargument{OUT}{\DATATYPENAME{Observable}{observable output}
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{createObservable} creates a new \DATATYPENAME{Observable}, \VAR{observ}. The arrays \VAR{observIn}, \VAR{pauliOp}, and \VAR{fieldOp} are all optional, but a combination of one of more of these arrays must be passed to create a new \DATATYPENAME{Observable}. \VAR{ops} is also optional.  If \VAR{ops} is passed to \FUNC{createObservable}, the operations are mapped by array index to the operands listed in \VAR{observIn}, \VAR{pauliOp}, and \VAR{fieldOp}.
+        \FUNC{createObservable} allocates memory for a single \DATATYPENAME{Observable}. The \VAR{pauliOp} and \VAR{fieldOp} are  optional arguments that can be used to create the new Observable with a pre-defined Pauli and/or Field operator(s).
 }
 
 \apireturnvalues{
-    Returns an \DATATYPENAME{Observable} datum. 
+    Returns a pointer to a new \DATATYPENAME{Observable}. 
 }      
 
 \apinotes{
