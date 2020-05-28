@@ -14,11 +14,16 @@
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{}{map, key is an integer, value string representation of x, y or z}
+    \apiargument{IN}{}{string}
+    \apiargument{IN}{}{coefficient}
 \end{apiarguments}
 
 \apidescription{
-        
+        - if empty map, is an identity
+        - map is any integer index to string x, y or z
+        - coefficient optional, defaults to 1
+        - string composition/concatenation of the form "<coefficient> <pauli string> <integer> ... <optional operation>"
 }
 
 \apireturnvalues{
