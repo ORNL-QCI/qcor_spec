@@ -1,29 +1,29 @@
 \apisummary{
-    
+    Adds two observables.
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    
+    Obervable* addOperation(Observable* op1, Observable* op2)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    
+    Obervable* qcor::addOperation(Observable &op1, Observable &op2)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{operand1}{oberservable operand}
-    \apiargument{IN}{operand2}{oberservable operand}
+    \apiargument{IN}{op1}{oberservable operand}
+    \apiargument{IN}{op2}{oberservable operand}
 \end{apiarguments}
 
 \apidescription{
-        
+        The \FUNC{addOperation} routine adds the observables op1 and op2.
 }
 
 \apireturnvalues{
-    Returns an obersvable the is the addition of operand1 and operand2.
+    Returns an obersvable that is the addition of op1 and op2.
 }      
 
 \apinotes{
