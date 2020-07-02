@@ -14,12 +14,13 @@
 
 
 \begin{apiarguments}
-    \apiargument{IN}{}{map, key is an integer, value string representation of x, y or z}
-    \apiargument{IN}{}{string}
-    \apiargument{IN}{}{coefficient}
+    \apiargument{IN}{sitemap}{mapping of integer 'key' to a string of value "x", "y" or "z"}
+    \apiargument{IN}{paulistr}{string}
+    \apiargument{IN}{coef}{coefficient}
 \end{apiarguments}
 
 \apidescription{
+        \FUNC{createPauli} accepts a string representation of a complex Pauli operator, \VAR{paulistr}, or an integer:string mapping, \VAR{sitemap}, of an integer site number to a string "x", "y", or "z". The integer \VAR{coef} argument can optionally be included with \VAR{sitemap} to multiply each term in the site map. If \VAR{coef} is not included, the default value is 1.
         - if empty map, is an identity
         - map is any integer index to string x, y or z
         - coefficient optional, defaults to 1
@@ -31,7 +32,7 @@
 }      
 
 \apinotes{
-    
+ The interger:string mapping has a seperate datatype representation for \Clang and \Cpp. The \Clang representation is a \qcor library type, \DATATYPENAME{SiteMap}.  The \Cpp representation is the \Cpp standard library type \DATATYPENAME{map}.  
 }
 
 \begin{apiexamples}
