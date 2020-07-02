@@ -1,28 +1,28 @@
 \apisummary{
-    
+     Creates Pauli Z operator at site n.
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    
+    PauliOperator pauliZ(int n)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    
+    PauliOperator qcor::pauliZ(int n)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{n}{integer value}
 \end{apiarguments}
 
 \apidescription{
-        
+        \FUNC{pauliZ} accepts an integer input that creates a Pauli Z operator at site n.  The Pauli Z operator is returned as a \DATATYPENAME{PauliOperator} type.
 }
 
 \apireturnvalues{
-    
+    Returns a single \DATATYPENAME{PauliOperator}.
 }      
 
 \apinotes{
