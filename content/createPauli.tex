@@ -1,34 +1,30 @@
 \apisummary{
-    
+    Creates a Pauli operator.
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    
+    PauliOperator createPauli(SiteMap sitemap, int coef, char* paulistr)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    
+    PauliOperator qcor::createPauli(std::map<int,string> sitemap, int coef, string paulistr)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{sitemap}{mapping of an integer to a string of value "x", "y" or "z"}
-    \apiargument{IN}{paulistr}{string}
-    \apiargument{IN}{coef}{coefficient}
+    \apiargument{IN}{sitemap}{mapping of an integer to a string of value``x'', ``y'' or ``z''}
+    \apiargument{IN}{coef}{coefficient for sitemap terms}
+    \apiargument{IN}{paulistr}{string representation of Pauli operator}
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{createPauli} accepts a string representation of a complex Pauli operator, \VAR{paulistr}, or an integer:string mapping, \VAR{sitemap}, of an integer site number to a string "x", "y", or "z". The integer \VAR{coef} argument can optionally be included with \VAR{sitemap} to multiply each term in the site map. If \VAR{coef} is not included, the default value is 1.
-        - if empty map, is an identity
-        - map is any integer index to string x, y or z
-        - coefficient optional, defaults to 1
-        - string composition/concatenation of the form "<coefficient> <pauli string> <integer> ... <optional operation>"
+        \FUNC{createPauli} accepts a string representation of a complex Pauli operator, \VAR{paulistr}, or an integer:string mapping, \VAR{sitemap}, of an integer site number to a string ``x'', ``y'', or ``z''. The integer \VAR{coef} argument can optionally be included with \VAR{sitemap} to multiply each term in the site map. If \VAR{coef} is not included, the default value is 1. If \VAR{paulistr} is provided, the expected form of the string is ``<coefficient> <pauli string> <integer> ... <optional operation>''. If both \VAR{paulistr} and \VAR{sitemap} are provided, \VAR{paulistr} is ignored and \VAR{sitemap} is used to produce the Pauli operator. If neither \VAR{paulistr} or \VAR{sitemap} are provided, the identy map is used to create the Pauli operator.
 }
 
 \apireturnvalues{
-    
+    Returns a single instance of a \DATATYPENAME{PauliOperator}.
 }      
 
 \apinotes{
