@@ -5,11 +5,11 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    PauliOperator pauliY(int n)
+    Observable pauliY(int n)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    PauliOperator qcor::pauliY(int n)
+    Observable qcor::pauliY(int n)
 \end{Cppsynopsis}
 
 
@@ -18,11 +18,11 @@
 \end{apiarguments}
 
 \apidescription{
-         \FUNC{pauliY} accepts an integer input that creates a Pauli Y operator at site \VAR{n}.  The Pauli Y operator is returned as a \DATATYPENAME{PauliOperator} type.
+         \FUNC{pauliY} accepts an integer input that creates a Pauli Y operator at site \VAR{n}.  The Pauli Y operator is returned as an \DATATYPENAME{Observable} type.
 }
 
 \apireturnvalues{
-    Returns a single \DATATYPENAME{PauliOperator}.
+    Returns a single instance of \DATATYPENAME{Observable}.
 }      
 
 \apinotes{
