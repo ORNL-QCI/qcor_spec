@@ -5,11 +5,11 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    PauliOperator pauliZ(int n)
+    Observable pauliZ(int n)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    PauliOperator qcor::pauliZ(int n)
+    Observable qcor::pauliZ(int n)
 \end{Cppsynopsis}
 
 
@@ -18,11 +18,11 @@
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{pauliZ} accepts an integer input that creates a Pauli Z operator at site \VAR{n}.  The Pauli Z operator is returned as a \DATATYPENAME{PauliOperator} type.
+        \FUNC{pauliZ} accepts an integer input that creates a Pauli Z operator at site \VAR{n}.  The Pauli Z operator is returned as an \DATATYPENAME{Observable} type.
 }
 
 \apireturnvalues{
-    Returns a single \DATATYPENAME{PauliOperator}.
+    Returns a single instance of \DATATYPENAME{Observable}.
 }      
 
 \apinotes{
