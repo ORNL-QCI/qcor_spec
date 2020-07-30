@@ -1,33 +1,35 @@
 \apisummary{
-     Multiplies two observables.
+     
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
     Obervable* multiplyOperation(Observable* op1, Observable* op2)
+    FieldOperator* multiplyOperation(FieldOperator* op1, FieldOperator* op2)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
     Obervable* qcor::multiplyOperation(Observable &op1, Observable &op2)
+    FieldOperator* qcor::multiplyOperation(FieldOperator &op1, FieldOperator &op2)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{op2}{oberservable operand}
-    \apiargument{IN}{op2}{oberservable operand}
+    \apiargument{IN}{op1}{left operand}
+    \apiargument{IN}{op2}{right operand}
 \end{apiarguments}
 
 \apidescription{
-        The \FUNC{multiplyOperation} routine multiplies the observables op1 and op2.
+        The \FUNC{multiplyOperation} routine multiplies \VAR{op1} and \VAR{op2}.
 }
 
 \apireturnvalues{
-     Returns an obersvable that is the multiplication of op1 and op2.
+     Returns the multiplication of \VAR{op1} and \VAR{op2}.
 }      
 
 \apinotes{
-    
+    The operand datatypes must be the same and are preserved during the multiply operation to return the same datatype as the operand.
 }
 
 \begin{apiexamples}
