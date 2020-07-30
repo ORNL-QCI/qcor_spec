@@ -5,22 +5,21 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    Observable* createObservable (PauliOperator *pauliOp, FieldOperator *fieldOp)
+    Observable* createObservable (Observable *obsvOp, FieldOperator *fieldOp)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    Observable* qcor::createObservable (PauliOperator &pauliOp, FieldOperator &fieldOp)
+    Observable* qcor::createObservable (Observable &obsvOp, FieldOperator &fieldOp)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{pauliOp}{address of pre-defined Pauli operator}
+    \apiargument{IN}{obsvOp}{address of pre-defined Observable operator}
     \apiargument{IN}{fieldOp}{address of pre-defined Field operator}
-    \apiargument{OUT}{\DATATYPENAME{Observable}{observable output}
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{createObservable} allocates memory for a single \DATATYPENAME{Observable}. The \VAR{pauliOp} and \VAR{fieldOp} are  optional arguments that can be used to create the new Observable with a pre-defined Pauli and/or Field operator(s).
+        \FUNC{createObservable} allocates memory for a single \DATATYPENAME{Observable}. The \VAR{obsvOp} and \VAR{fieldOp} are  optional arguments that can be used to create the new \DATATYPENAME{Observable} with a pre-defined Observable and/or Field operator(s).
 }
 
 \apireturnvalues{
