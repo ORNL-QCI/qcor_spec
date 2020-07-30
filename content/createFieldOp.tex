@@ -1,0 +1,44 @@
+\apisummary{
+    creates a boson or fermion feild operator
+}
+
+\begin{apidefinition}
+
+\begin{Csynopsis}
+    FieldOperator* createFieldOp(char* opType, char* relType, int siteIdx, double complex coef)
+\end{Csynopsis}
+
+\begin{Cppsynopsis}
+    FieldOperator* qcor::createFieldOp(string opType, string relType, int siteIdx, std::complex coef)
+\end{Cppsynopsis}
+
+
+\begin{apiarguments}
+    \apiargument{IN}{opType}{a string that designates if the field operator is a creation or annihilation operator}
+    \apiargument{IN}{relType}{a string that designates if the commutation relations; the relations are either fermionic or bosonic}
+    \apiargument{IN}{siteIdx}{integer site index}
+    \apiargument{IN}{coef}{complex coefficient value}
+\end{apiarguments}
+
+\apidescription{
+        
+}
+
+\apireturnvalues{
+    
+}      
+
+\apinotes{
+    
+}
+
+\begin{apiexamples}
+
+\apicppexample
+    { This is a simple program that calls \FUNC{createFieldOp}: } 
+    { example_code/createFieldOp_ex.cpp} 
+    {}
+
+\end{apiexamples}
+
+\end{apidefinition}
