@@ -2,6 +2,9 @@ The \qcor specification has a set of datatypes that enable the expression of qua
 
 \subsection{\textbf{ObjectiveFunction}}\label{subsec:ObjectiveFunction}
 \DATATYPENAME{ObjectiveFunction} captures the behavior of a parameterizable function. The \DATATYPENAME{ObjectiveFunction} is initialized with the problem-specific observable and kernel. The \DATATYPENAME{ObjectiveFunction} also exposes a method to evaluate the kernel, given a set of parameters, and executes general pre- and post-processing of the kernel execution.\\
+%SP 8/4/2020: Can we provide an example of an ObjectiveFunction?
+%SP 8/4/2020: ''initialized with the problem-specific observable and kernel'' - this is confusing for someone new to the field, we just talked about it being a parameterizable function and then jump to an observable and kernel which are not yet defined.
+%SP 8/4/2020: ''executes general pre- and post-processing of the kernel execution'' - executes [blah blah] of an execution - this doesn't really help understand the concept, perhaps could we reword?
 
 \subsection{\textbf{ResultsBuffer}}\label{subsec:ResultsBuffer}
 \DATATYPENAME{ResultsBuffer} contains the measurement results from a single quantum execution.\\
@@ -12,6 +15,7 @@ The \qcor specification has a set of datatypes that enable the expression of qua
 % does this refer to the underlying operator transformations?
 It contains the data to algebraically relate basic and complex operations, 
 % i.e. how we put together the observable from a set of non-commuting measurement bases
+%SP 8/4/2020: agree with above comments, could we give an example as well?  Overall this explanation doesn't help me really understand what an observable is.
 and the measurements from the observation of the kernel execution.\\
 % is a pauli operator a subclass of a observable? consensus? should explicitely state if so. 
 
@@ -23,5 +27,6 @@ and the measurements from the observation of the kernel execution.\\
 
 \subsection{\textbf{SiteMap}}\label{subsec:Sitemap}
 % is this a mapping between a coodinate system (given a dimensionality) and indicies for the lattice sites? 
+%SP 8/4/2020: what is a plane?
 \DATATYPENAME{SiteMap} has an integer, \VAR{site_idx}, and string, \VAR{plane}, attribute. These attributes form a mapping of \VAR{site_idx} to \VAR{plane} for use in \Clang.
 

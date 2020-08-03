@@ -11,7 +11,9 @@
 \begin{Cppsynopsis}
     Observable qcor::createPauli(std::map<int,string> sitemap, std::complex coef, string paulistr)
 \end{Cppsynopsis}
-
+%SP 8/4/2020: why are some of these types all of a sudden in bold?
+%SP 8/4/2020: paulistr to camelCase?
+%SP 8/4/2020: line wrap issue in pdf
 
 \begin{apiarguments}
     \apiargument{IN}{sitemap}{mapping of an integer to a string of value``x'', ``y'' or ``z''}
@@ -20,7 +22,9 @@
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{createPauli} accepts a string representation of a complex Pauli operator, \VAR{paulistr}, or an integer:string mapping, \VAR{sitemap}, of an integer site number to a string ``x'', ``y'', or ``z''. The integer \VAR{coef} argument can optionally be included with \VAR{sitemap} to multiply each term in the site map. If \VAR{coef} is not included, the default value is 1. If \VAR{paulistr} is provided, the expected form of the string is ``<coefficient> <pauli string> <integer> ... <optional operation>''. If both \VAR{paulistr} and \VAR{sitemap} are provided, \VAR{paulistr} is ignored and \VAR{sitemap} is used to produce the Pauli obervable. If neither \VAR{paulistr} or \VAR{sitemap} are provided, the identy map is used to create the Pauli observable.
+        \FUNC{createPauli} accepts a string representation of a complex Pauli operator, \VAR{paulistr}, or an integer:string mapping, \VAR{sitemap}, of an integer site number to a string ``x'', ``y'', or ``z''. The integer \VAR{coef} argument can optionally be included with \VAR{sitemap} to multiply each term in the site map. If \VAR{coef} is not included, the default value is 1. If \VAR{paulistr} is provided, the expected form of the string is ``<coefficient> <pauli string> <integer> ... <optional operation>''. If both \VAR{paulistr} and \VAR{sitemap} are provided, \VAR{paulistr} is ignored and \VAR{sitemap} is used to produce the Pauli observable. If neither \VAR{paulistr} or \VAR{sitemap} are provided, the identy map is used to create the Pauli observable.
+        %SP 8/4/2020: formatting not coming through in pdf
+        %SP 8/4/2020: An example would help clear things up
 }
 
 \apireturnvalues{
@@ -28,7 +32,8 @@
 }      
 
 \apinotes{
- The interger:string mapping has a seperate datatype representation for \Clang and \Cpp. The \Clang representation is a \qcor library type, \DATATYPENAME{SiteMap}.  The \Cpp representation is the \Cpp standard library type \DATATYPENAME{map}.  
+ The interger:string mapping has a seperate datatype representation for \Clang and \Cpp. The \Clang representation is a \qcor library type, \DATATYPENAME{SiteMap}.  The \Cpp representation is the \Cpp standard library type \DATATYPENAME{map}. 
+ %SP 8/4/2020: space after \Clang ? 
 }
 
 \begin{apiexamples}

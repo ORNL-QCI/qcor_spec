@@ -1,4 +1,5 @@
 \apisummary{
+	%SP 8/4/2020: use a full sentence? or capitalize first word at least
     method to transform composite orperators that are pauli or field operators to a pauli observable
 }
 
@@ -10,12 +11,15 @@ Observable observableTransform(compositeOperator* compOp, void* modifier)
 
 \begin{Cppsynopsis}
 Observable observableTransform(map<compositeOperator, compositeOperator> compOp, void* modifier)
+%SP 8/4/2020: line wrap issue in pdf
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{compOp}{list of variable of compositeOperator type}
+    \apiargument{IN}{compOp}{list of variables of compositeOperator type}
     \apiargument{IN}{modifier}{an additional transformation on a pauli composite operator. This is a function pointer that implements additional transformations on the Pauli observable produced by \FUNC{observableTransform}. The function header should accept the Observable type}
+    %SP 8/4/2020: pauli or Pauli?
+    %SP 8/4/2020: so the output of observableTransform can be modified by the modifier before being returned? Is this the right way to say/do this?
     \apiargument{OUT}{oberservable}{}
 \end{apiarguments}
 
