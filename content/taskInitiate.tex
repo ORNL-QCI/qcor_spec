@@ -16,6 +16,7 @@ Handle qcore::taskInitiate(Observable *observable, Kernel *kernel, Objective *ob
 \begin{apiarguments}
     \apiargument{IN}{observable}{A rule that defines the basis for the measurement after the kernel has been executed on the quantum hardware}
     \apiargument{IN}{kernel}{The quantum kernel to be executed as part of the objective function evaluation}
+    % dosn't the ObjectiveFunction already contain the observable and kernels? See datatypes.tex
     \apiargument{IN}{objective}{A parameterized user defined function transforming input data into an output result}
     \apiargument{IN}{optimizer}{Takes an objective function as input and outputs the optimal function parameters and associated function value}
 \end{apiarguments}
