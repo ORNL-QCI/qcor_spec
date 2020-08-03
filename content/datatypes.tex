@@ -1,20 +1,27 @@
 The \qcor specification has a set of datatypes that enable the expression of quantum concepts within the \qcor \ac{API}s.\\
 
 \subsection{\textbf{ObjectiveFunction}}\label{subsec:ObjectiveFunction}
-\DATATYPENAME{ObjectiveFunction} captures the behavior of a parameterizable function. It is initialized with the problem-specific observable and kernel, and exposes a method to evaluate the kernel given a set of parameters and executes general pre and post processing of the kernel execution.\\
+\DATATYPENAME{ObjectiveFunction} captures the behavior of a parameterizable function. The \DATATYPENAME{ObjectiveFunction} is initialized with the problem-specific observable and kernel. The \DATATYPENAME{ObjectiveFunction} also exposes a method to evaluate the kernel, given a set of parameters, and executes general pre- and post-processing of the kernel execution.\\
 
 \subsection{\textbf{ResultsBuffer}}\label{subsec:ResultsBuffer}
 \DATATYPENAME{ResultsBuffer} contains the measurement results from a single quantum execution.\\
 
 \subsection{\textbf{Observable}}\label{subsec:Observable}
-\DATATYPENAME{Observable} is an operator built from the basic operators, PauliOperator and FieldOperator. It contains the data to algebraically relate basic and complex operations, and the measurements from the observation of the kernel execution.\\
+% description of how to build/initialize observable should be refined. 
+\DATATYPENAME{Observable} is an operator built from PauliOperators and transformed FieldOperators.
+% does this refer to the underlying operator transformations?
+It contains the data to algebraically relate basic and complex operations, 
+% i.e. how we put together the observable from a set of non-commuting measurement bases
+and the measurements from the observation of the kernel execution.\\
+% is a pauli operator a subclass of a observable? consensus? should explicitely state if so. 
 
 %\subsection{\textbf{PauliOperator}}\label{subsec:PauliOperator}
 %\DATATYPENAME{PauliOperator} is a single operator type with three attributes: PauliX, PauliY or PauliZ, site/spatial index which is an %integer value, coefficient float value.\\
 
 \subsection{\textbf{FieldOperator}}\label{subsec:FieldOperator}
-\DATATYPENAME{FieldOperator} is a single operator type with four attributes: creator or anihilator, exchangeStatistics, site/spatial index which is an integer value, complex coefficient value.\\
+\DATATYPENAME{FieldOperator} is a single operator type with four attributes: creator or anihilator, exchangeStatistics, site/spatial index (which is an integer value), and a multiplicative complex scalar coefficient.\\
 
 \subsection{\textbf{SiteMap}}\label{subsec:Sitemap}
+% is this a mapping between a coodinate system (given a dimensionality) and indicies for the lattice sites? 
 \DATATYPENAME{SiteMap} has an integer, \VAR{site_idx}, and string, \VAR{plane}, attribute. These attributes form a mapping of \VAR{site_idx} to \VAR{plane} for use in \Clang.
 
