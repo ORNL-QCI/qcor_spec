@@ -1,25 +1,25 @@
 \apisummary{
-	%SP 8/4/2020: use a full sentence? or capitalize first word at least
-    method to transform composite orperators that are pauli or field operators to a pauli observable
+    Method transforming FieldOperators to a observable.
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-Observable observableTransform(compositeOperator* compOp, void* modifier)
+Observable observableTransform(FieldOperator* fieldOp, void* modifier)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-Observable observableTransform(map<compositeOperator, compositeOperator> compOp, void* modifier)
+Observable observableTransform(map<FieldOperator, FieldOperator> fieldOp, void* modifier)
 %SP 8/4/2020: line wrap issue in pdf
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{compOp}{list of variables of compositeOperator type}
-    \apiargument{IN}{modifier}{an additional transformation on a pauli composite operator. This is a function pointer that implements additional transformations on the Pauli observable produced by \FUNC{observableTransform}. The function header should accept the Observable type}
+    \apiargument{IN}{fieldOp}{list of variables of FieldOperator type}
+    \apiargument{IN}{modifier}{a transformation mapping generalized operators to observables. This is a function pointer that implements transformations to observable produced by \FUNC{observableTransform}. The function header should accept the Observable type}
     %SP 8/4/2020: pauli or Pauli?
     %SP 8/4/2020: so the output of observableTransform can be modified by the modifier before being returned? Is this the right way to say/do this?
+    %EZJ: also confused 
     \apiargument{OUT}{oberservable}{}
 \end{apiarguments}
 
