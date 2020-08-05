@@ -1,5 +1,5 @@
 \apisummary{
-   
+   Takes a pair of Observables (or FieldOperators) and returns their sum. 
 }
 
 \begin{apidefinition}
@@ -26,10 +26,11 @@
 
 \apireturnvalues{
     Returns the addition of \VAR{op1} and \VAR{op2}.
+    % EZJ: is the returned obs a NEW obs, or are op1 or op2 updated?
 }      
 
 \apinotes{
-    The operand datatypes must be the same and are preserved during the add operation to return the same datatype as the operand.
+    The operand datatypes must be the same and are preserved during the add operation to return the same datatype as the operand. Note, this allows the addition of distinct types of Field operators, but Observables cannot be mixed with other operator types.
 }
 
 \begin{apiexamples}
