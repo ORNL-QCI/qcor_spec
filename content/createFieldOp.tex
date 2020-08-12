@@ -5,11 +5,11 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    FieldOperator* createFieldOp(char* opType, char* relType, int siteIdx, double complex coef)
+    Observable* createFieldOp(char* opType, char* relType, int siteIdx, double complex coef)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    FieldOperator* qcor::createFieldOp(string opType, string relType, int siteIdx, std::complex coef)
+    Observable* qcor::createFieldOp(string opType, string relType, int siteIdx, std::complex coef)
 \end{Cppsynopsis}
 
 
@@ -21,11 +21,11 @@
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{createFieldOp} creates a creation or annihilation field operator that is either Fermionic or Bosonic. The creation or annihilation atrribute is set by assigning the string value ``create'' or ``annihilate'', respectively, to \VAR{opType}.  The Fermionic or Bosonic attribute is set by assigning the string value ``Fermion'' or ``Boson'', respectively, to \VAR{relType}. \FUNC{createFieldOp} must also assign an integer site index via \VAR{sizeIdx}. The complex coefficient \VAR{coef} is optional, and is 1 by default. 
+        \FUNC{createFieldOp} creates a creation or annihilation field operator representation that is either Fermionic or Bosonic. The creation or annihilation atrribute is set by assigning the string value ``create'' or ``annihilate'', respectively, to \VAR{opType}.  The Fermionic or Bosonic attribute is set by assigning the string value ``Fermion'' or ``Boson'', respectively, to \VAR{relType}. \FUNC{createFieldOp} must also assign an integer site index via \VAR{sizeIdx}. The complex coefficient \VAR{coef} is optional, and is 1 by default. 
 }
 
 \apireturnvalues{
-    Returns a pointer to a single instance of \DATATYPENAME{FieldOperator}.
+    Returns a pointer to a single instance of \DATATYPENAME{Observable}.
 }      
 
 \apinotes{
