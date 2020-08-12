@@ -5,21 +5,21 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    Observable* createObservable (Observable *obsvOp, FieldOperator *fieldOp)
+    Observable* createObservable (SiteMap *sitemap, double complex coef)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    Observable* qcor::createObservable (Observable &obsvOp, FieldOperator &fieldOp)
+    Observable* qcor::createObservable (std::map<int,string> sitemap, std::complex coef)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{obsvOp}{address of pre-defined Observable operator}
-    \apiargument{IN}{fieldOp}{address of pre-defined Field operator}
+    \apiargument{IN}{sitemap}{mapping of an integer to a string of value``x'', ``y'' or ``z''}
+    \apiargument{IN}{coef}{coefficient for sitemap terms}
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{createObservable} allocates memory for a single \DATATYPENAME{Observable}. The \VAR{obsvOp} and \VAR{fieldOp} are  optional arguments that can be used to create the new \DATATYPENAME{Observable} with a pre-defined Observable and/or Field operator(s).
+        \FUNC{createObservable} accepts an integer:string mapping, \VAR{sitemap}, of an integer site number to a string ``x'', ``y'', or ``z''. \VAR{sitemap} may contain one or more integer:string mappings. The complex coefficient \VAR{coef} argument can optionally be included to multiply each term in the site map. If \VAR{coef} is not included, the default value is 1.
 }
 
 \apireturnvalues{
@@ -27,6 +27,8 @@
 }      
 
 \apinotes{
+    The interger:string mapping has a seperate datatype representation for \Clang and \Cpp. The \Clang representation is a \qcor library type, \DATATYPENAME{SiteMap}.  The \Cpp representation is the \Cpp standard library type \DATATYPENAME{map}. 
+ %SP 8/4/2020: space after \Clang ? 
     %EZJ: Does one need to createobserve(fieldOp) and then use observableTransform(fieldOp) to populate the observable with data?
     %i.e. we need to specify and deliniate the relationship between createobserve and observableTransform. 
 }
