@@ -1,28 +1,29 @@
 \apisummary{
-    
+    Adds a pair of Observables.
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    
+    void addOperation(Observable* op1, Observable* op2)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    
+    void qcor::addOperation(Observable &op1, Observable &op2)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN/OUT}{op1}{left Observable operand}
+    \apiargument{IN}{op2}{right Observable operand}
 \end{apiarguments}
 
 \apidescription{
-        
+       The \FUNC{addOperation} routine adds \VAR{op2} to \VAR{op1}. The value of \VAR{op1} is updated to be the value of the sum.
 }
 
 \apireturnvalues{
-    
+    None.
 }      
 
 \apinotes{
