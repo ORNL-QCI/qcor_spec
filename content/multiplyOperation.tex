@@ -1,36 +1,34 @@
 \apisummary{
-     Takes a pair of Observables (or FieldOperators) and retrurns their product. 
+     Takes Observables and retrurns their product. 
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    Obervable* multiplyOperation(Observable* op1, Observable* op2)
-    FieldOperator* multiplyOperation(FieldOperator* op1, FieldOperator* op2)
+    Obervable* multiplyOperation(Observable* op1, Observable* op2, ...)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    Obervable* qcor::multiplyOperation(Observable &op1, Observable &op2)
-    FieldOperator* qcor::multiplyOperation(FieldOperator &op1, FieldOperator &op2)
+    Obervable* qcor::multiplyOperation(Observable &op1, Observable &op2, ...)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{op1}{left operand}
-    \apiargument{IN}{op2}{right operand}
+    \apiargument{IN}{op1}{first Observable operand}
+    \apiargument{IN}{op2}{second Observable operand}
+    \apiargument{IN}{...}{additional Observable operands}
 \end{apiarguments}
 
 \apidescription{
-        The \FUNC{multiplyOperation} routine multiplies \VAR{op1} and \VAR{op2}.
+        The \FUNC{multiplyOperation} routine multiplies two or more \DATATYPENAME{Observables}.
 }
 
 \apireturnvalues{
-     Returns the multiplication of \VAR{op1} and \VAR{op2}.
-     % again, new output or updates one of the inputs?
+     Returns new instance of \DATATYPENAME{Observable}.
 }      
 
 \apinotes{
-    The operand datatypes must be the same and are preserved during the multiply operation to return the same datatype as the operand.
+    
 }
 
 \begin{apiexamples}
