@@ -6,6 +6,10 @@ The \qcor specification has a set of datatypes that enable the expression of qua
 %SP 8/4/2020: ''initialized with the problem-specific observable and kernel'' - this is confusing for someone new to the field, we just talked about it being a parameterizable function and then jump to an observable and kernel which are not yet defined.
 %SP 8/4/2020: ''executes general pre- and post-processing of the kernel execution'' - executes [blah blah] of an execution - this doesn't really help understand the concept, perhaps could we reword?
 
+\subsection{\textbf{Optimizer}}\label{subsec:Optimizer}
+\DATATYPENAME{Optimizer} .\\
+
+
 \subsection{\textbf{ResultsBuffer}}\label{subsec:ResultsBuffer}
 \DATATYPENAME{ResultsBuffer} contains the measurement results from a single quantum execution.\\
 
@@ -27,8 +31,10 @@ and the measurements from the observation of the kernel execution.\\
 
 \subsection{\textbf{SiteMap}}\label{subsec:Sitemap}
 % is this a mapping between a coodinate system (given a dimensionality) and indicies for the lattice sites? 
-%SP 8/4/2020: what is a plane?
-\DATATYPENAME{SiteMap} has an integer, \VAR{site_idx}, and string, \VAR{plane}, attribute. These attributes form a mapping of \VAR{site_idx} to \VAR{plane} for use in \Clang.
+\DATATYPENAME{SiteMap} has an integer, \VAR{site_idx}, and string, \VAR{axis}, attribute. These attributes form a mapping of \VAR{site_idx} to \VAR{axis} for use in \Clang.
 
 \subsection{\textbf{OperatorTransform}}\label{subsec:OperatorTransform}
 \DATATYPENAME{OperatorTransform} A function mapping an (variatic number of) input Operator(s) to a transformed output (list of) Operator(s). 
+
+\subsection{\textbf{HeterogeneousMap}}\label{subsec:direction}
+\DATATYPENAME{direction} has two attributes a string \VAR{s} and void pointer \VAR{p} for use in \Clang.
