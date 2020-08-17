@@ -5,11 +5,11 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    Observable* createFieldOp(char* opType, char* relType, int siteIdx, double complex coef)
+    Operator* createFieldOp(char* opType, char* relType, int siteIdx, double complex coef)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    Observable* qcor::createFieldOp(string opType, string relType, int siteIdx, std::complex coef)
+    Operator* qcor::createFieldOp(string opType, string relType, int siteIdx, std::complex coef)
 \end{Cppsynopsis}
 
 
@@ -25,7 +25,7 @@
 }
 
 \apireturnvalues{
-    Returns a pointer to a single instance of \DATATYPENAME{Observable}.
+    Returns a pointer to a single instance of \DATATYPENAME{Operator}.
 }      
 
 \apinotes{
