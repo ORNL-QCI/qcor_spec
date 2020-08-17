@@ -1,15 +1,15 @@
 \apisummary{
-    Creates an observable
+    Creates an Operator
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    Observable* createObservable (SiteMap *sitemap, double complex coef)
+    Operator* createOperator (SiteMap *sitemap, double complex coef)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    Observable* qcor::createObservable (std::map<int,string> sitemap, std::complex coef)
+    Operator* qcor::createOperator (std::map<int,string> sitemap, std::complex coef)
 \end{Cppsynopsis}
 
 
@@ -19,25 +19,24 @@
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{createObservable} accepts an integer:string mapping, \VAR{sitemap}, of an integer site number to a string ``x'', ``y'', or ``z''. \VAR{sitemap} may contain one or more integer:string mappings. The complex coefficient \VAR{coef} argument can optionally be included to multiply each term in the site map. If \VAR{coef} is not included, the default value is 1.
+        \FUNC{createOperator} accepts an integer:string mapping, \VAR{sitemap}, of an integer site number to a string ``x'', ``y'', or ``z''. \VAR{sitemap} may contain one or more integer:string mappings. The complex coefficient \VAR{coef} argument can optionally be included to multiply each term in the site map. If \VAR{coef} is not included, the default value is 1.
 }
 
 \apireturnvalues{
-    Returns a pointer to a new \DATATYPENAME{Observable}. 
+    Returns a pointer to a new \DATATYPENAME{Operator}. 
 }      
 
 \apinotes{
     The interger:string mapping has a seperate datatype representation for \Clang and \Cpp. The \Clang representation is a \qcor library type, \DATATYPENAME{SiteMap}.  The \Cpp representation is the \Cpp standard library type \DATATYPENAME{map}. 
  %SP 8/4/2020: space after \Clang ? 
-    %EZJ: Does one need to createobserve(fieldOp) and then use observableTransform(fieldOp) to populate the observable with data?
-    %i.e. we need to specify and deliniate the relationship between createobserve and observableTransform. 
+     
 }
 
 \begin{apiexamples}
 
 \apicppexample
-    { This is a simple program that calls \FUNC{createObservable}: } 
-    { example_code/createObservable_ex.cpp} 
+    { This is a simple program that calls \FUNC{createOperator}: } 
+    { example_code/createOperator_ex.cpp} 
     {}
 
 \end{apiexamples}
