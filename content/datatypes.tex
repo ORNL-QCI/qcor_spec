@@ -1,10 +1,10 @@
 The \qcor specification has a set of datatypes that enable the expression of quantum concepts within the \qcor \ac{API}s.\\
 
 \subsection{\textbf{ObjectiveFunction}}\label{subsec:ObjectiveFunction}
-\DATATYPENAME{ObjectiveFunction} captures the behavior of a parameterizable function. The \DATATYPENAME{ObjectiveFunction} is initialized with the problem-specific observable and kernel. The \DATATYPENAME{ObjectiveFunction} also exposes a method to evaluate the kernel, given a set of parameters, and executes general pre- and post-processing of the kernel execution.\\
-%SP 8/4/2020: Can we provide an example of an ObjectiveFunction?
-%SP 8/4/2020: ''initialized with the problem-specific observable and kernel'' - this is confusing for someone new to the field, we just talked about it being a parameterizable function and then jump to an observable and kernel which are not yet defined.
-%SP 8/4/2020: ''executes general pre- and post-processing of the kernel execution'' - executes [blah blah] of an execution - this doesn't really help understand the concept, perhaps could we reword?
+\DATATYPENAME{ObjectiveFunction} is a representation of a parameterized function y = f(U(x'),x,O)
+where x denotes a list of scalar parameters, O denotes an operator, and U(x') denotes a quantum kernel whose behaviour is controlled by x' (related to x as defined by user). \DATATYPENAME{ObjectiveFunction} is initialized with a {\em Hermitian} operater and quantum kernel. As a default the \DATATYPENAME{ObjectiveFunction} evaluates the expectation value of O with respect to U at a given x' (e.g. $<0|U(x')^\dagger \hat{O} U(x')|0>$). \DATATYPENAME{ObjectiveFunction} can be extended to provide specialized processing of the expectation values for non-VQE use cases. Using the default and extended \DATATYPENAME{ObjectiveFunction}, in tandem with the optimizer, one can succinctly implement the variational quantum algorithms, for example VQE.  
+%default: y = a<Z>(x)+b<ZZ>(x)+... u<ZIIIIIIIZ>(x))
+%specialized: y = (log(a<Z>(x))+b<ZZ>(x)+... u<ZIIIIIIIZ>(x)))/log(p(x))... 
 
 \subsection{\textbf{Optimizer}}\label{subsec:Optimizer}
 \DATATYPENAME{Optimizer} .\\
