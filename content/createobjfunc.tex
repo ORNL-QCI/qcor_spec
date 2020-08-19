@@ -17,11 +17,11 @@
     \apiargument{IN}{op}{Operator defined for measuring the quantum kernel}
     \apiargument{IN}{quantumKernel}{pointer to the quantum kernel}
     \apiargument{IN}{variable_parameters}{indication of the number of variables in the objective evaluation}
-    \apiargument{IN}{options}{}
+    \apiargument{IN}{options}{a map of string to void* for including additional information}
 \end{apiarguments}
 
 \apidescription{
-        
+        \FUNC{createObjectiveFunction} creates and initializes an instance of \DATATYPENAME{ObjectiveFunction} with a {\em Hermitian} operater, \VAR{op} and quantum kernel, \VAR{quantumKernel}.  An integer value, \VAR{variable_parameters} is also passed to \FUNC{createObjectiveFunction} to indicate the number of variable parameters to be evaluated by the objective function.  Additional information may also be provided to the objective function via options. For example,...<need to provide>
 }
 
 \apireturnvalues{
