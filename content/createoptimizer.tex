@@ -5,16 +5,17 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    
+    Optimizer* createOptimizer(ObjectiveFunction *objective, HeterogeneousMap *options)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    
+    Optimizer* qcor::createOptimizer(ObjectiveFunction *objective, std::map<int,string>  options)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{objective}{A representation of a parameterized function}
+    \apiargument{IN}{options}{a map of string to void* for including additional information}
 \end{apiarguments}
 
 \apidescription{
@@ -22,7 +23,7 @@
 }
 
 \apireturnvalues{
-    
+    Returns a pointer to a new \DATATYPENAME{Optimizer}.
 }      
 
 \apinotes{
