@@ -5,21 +5,20 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    Optimizer* createOptimizer(ObjectiveFunction *objective, HeterogeneousMap *options)
+    Optimizer* createOptimizer()
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    Optimizer* qcor::createOptimizer(ObjectiveFunction *objective, std::map<int,string>  options)
+    Optimizer* qcor::createOptimizer()
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{objective}{A representation of a parameterized function}
-    \apiargument{IN}{options}{a map of string to void* for including additional information}
+    
 \end{apiarguments}
 
 \apidescription{
-        
+        \FUNC{createOptimizer} allocates memory for a single instance of \DATATYPENAME{Optimizer}.
 }
 
 \apireturnvalues{
