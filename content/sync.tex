@@ -1,5 +1,5 @@
 \apisummary{
-    
+    A synchronization call for a particular task
 }
 
 \begin{apidefinition}
@@ -14,7 +14,7 @@
 
 
 \begin{apiarguments}
-    \apiargument{IN}{qh}{Handle for the quantum kernel launched by the TaskInitiate call}
+    \apiargument{IN}{qh}{Handle for the task launched by the taskInitiate call}
 \end{apiarguments}
 
 \apidescription{
@@ -22,7 +22,7 @@
 }
 
 \apireturnvalues{
-    Returns an instance of \DATATYPENAME{ResultsBuffer} which contains output of the quantum kernel execution.
+    Returns an instance of \DATATYPENAME{ResultsBuffer}.
 }      
 
 \apinotes{
