@@ -5,34 +5,29 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-Observable observableTransform(FieldOperator* fieldOp, void* modifier)
+Operator* operatorTransform(char* modifier, Operator* Op)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-Observable observableTransform(map<FieldOperator, FieldOperator> fieldOp, void* modifier)
-%SP 8/4/2020: line wrap issue in pdf
+Operator* operatorTransform(std::string modifier, Operator& Op)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{fieldOp}{list of variables of FieldOperator type}
-    \apiargument{IN}{modifier}{a transformation mapping generalized operators to observables. This is a function pointer that implements transformations to observable produced by \FUNC{observableTransform}. The function header should accept the Observable type}
-    %SP 8/4/2020: pauli or Pauli?
-    %SP 8/4/2020: so the output of observableTransform can be modified by the modifier before being returned? Is this the right way to say/do this?
-    %EZJ: also confused 
-    \apiargument{OUT}{oberservable}{}
+    \apiargument{IN}{modifier}{A string indicating the modifier name}
+    \apiargument{IN}{Op}{an Operator type}
 \end{apiarguments}
 
 \apidescription{
-    
+    A transformation mapping operator, \VAR{Op}, to a new operator as denoted by the string \VAR{modifier} which indicates the transformation method. 
 }
 
 \apireturnvalues{
-    use shmem tex files as a guide
+    pointer to the resulting operator 
 }      
 
 \apinotes{
-    e.g. transform fermionic Operators to a pauli Operator.
+
 }
 
 \end{apidefinition}
