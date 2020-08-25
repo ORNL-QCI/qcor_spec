@@ -1,5 +1,5 @@
 \apisummary{
- Invoked on the host to launch a quantum kernel on the quantum device.   
+ Invoked on the host to launch a quantum-classical task. 
 }
 
 \begin{apidefinition}
@@ -15,26 +15,20 @@ Handle qcor::taskInitiate(ObjectiveFunction &objective, Optimizer &optimizer)
 
 
 \begin{apiarguments}
-    \apiargument{IN}{objective}{A representation of a parameterized function}
-    %SP 8/4/2020: how is this different from objectiveFunction?  the description is basically saying it is an objective function.  This has often confused me. EZJ ditto. 
-    \apiargument{IN}{optimizer}{Takes an objective function as input and outputs the optimal function parameters and associated function value}
+    \apiargument{IN}{objective}{An objective function}
+    \apiargument{IN}{optimizer}{The optimization strategy}
 \end{apiarguments}
 
 \apidescription{
-The taskInitiate call is invoked on the host to launch a quantum kernel on the quantum device. The taskInitiate call references the objective function, and the classical optimizer. After a quantum kernel has been launched, host execution continues until the host reaches a sync call.  
+The taskInitiate call is invoked on the host to launch a quantum-classical task. The taskInitiate call references the objective function and the classical optimizer. After launching a task the host execution continues until the host reaches a sync call.  
 }
 
 \apireturnvalues{
-    Handle for the quantum kernel launched by the taskInitiate call.
+    Handle for the task launched by the taskInitiate call.
 }      
 
 \apinotes{
-The taskInitiate call kicks off a hybrid quantum-classical task. For example, 
-in variational quantum computing the kernel executes on the quantum 
-device and the implementation may iterate         
-execution between the quantum and classical
-host devices, with the host performing classical optimization based on 
-measurements from the quantum device.   
+
 }
 
 \end{apidefinition}
