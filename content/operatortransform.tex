@@ -1,5 +1,5 @@
 \apisummary{
-    Abstraction which models general transformations on operators. 
+    Performs general transformations on Operators. 
 }
 
 \begin{apidefinition}
@@ -15,15 +15,15 @@ Operator* operatorTransform(std::string modifier, Operator& Op)
 
 \begin{apiarguments}
     \apiargument{IN}{modifier}{A string indicating the modifier name}
-    \apiargument{IN}{Op}{an Operator type}
+    \apiargument{IN}{Op}{an Operator }
 \end{apiarguments}
 
 \apidescription{
-    A transformation mapping operator, \VAR{Op}, to a new operator as denoted by the string \VAR{modifier} which indicates the transformation method. 
+    \FUNC{operatorTransform} performs a transformation mapping \DATATYPENAME{Operator}, \VAR{Op}, to a new \DATATYPENAME{Operator} as denoted by the string \VAR{modifier} which indicates the transformation method. 
 }
 
 \apireturnvalues{
-    pointer to the resulting operator 
+    Returns a pointer to the new transformed \DATATYPENAME{Operator}.
 }      
 
 \apinotes{
