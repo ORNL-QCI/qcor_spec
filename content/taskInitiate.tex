@@ -1,30 +1,30 @@
 \apisummary{
- Invoked on the host to launch a quantum-classical task. 
+ Invoked to launch a quantum-classical task. 
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-Handle taskInitiate(ObjectiveFunction *objective, Optimizer *optimizer)
-%SP 8/4/2020: fix text wrap so it doesn't cut at odd place
+Handle taskInitiate(ObjectiveFunction *objective, Optimizer *optimizer, bool all_opt_data)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-Handle qcor::taskInitiate(ObjectiveFunction &objective, Optimizer &optimizer)
+Handle qcor::taskInitiate(ObjectiveFunction &objective, Optimizer &optimizer, bool all_opt_data)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
     \apiargument{IN}{objective}{An objective function}
     \apiargument{IN}{optimizer}{The optimization strategy}
+    \apiargument{IN}{all_opt_data}{A flag to indicate if intermidiate data should be collected}
 \end{apiarguments}
 
 \apidescription{
-The taskInitiate call is invoked on the host to launch a quantum-classical task. The taskInitiate call references the objective function and the classical optimizer. After launching a task the host execution continues until the host reaches a sync call.  
+The \FUNC{taskInitiat}e call is invoked on the host to launch a quantum-classical task. The \FUNC{taskInitiate} call references the objective function, \VAR{objective} and the classical optimizer, \VAR{optimizer}. After launching a task the host execution continues until the host reaches a \FUNC{sync} api call. During the execution of \FUNC{taskInitiate}, optimzation iterations over \VAR{objective} parameters are performed.  Setting \VAR{all_opt_data} to \CONST{true} saves the parameters and objective function results at every iteration to be returned in \DATATYPENAME{ResultsBuffer} at a \FUNC{sync} api call.  Setting \VAR{all_opt_data} to \CONST{false} discards intermediate results and returns the optimal results.
 }
 
 \apireturnvalues{
-    Handle for the task launched by the taskInitiate call.
+    Returns a unique instance of \DATATYPENAME{Handle}.
 }      
 
 \apinotes{
