@@ -16,11 +16,11 @@ Handle qcor::taskInitiate(ObjectiveFunction &objective, Optimizer &optimizer, bo
 \begin{apiarguments}
     \apiargument{IN}{objective}{An objective function}
     \apiargument{IN}{optimizer}{The optimization strategy}
-    \apiargument{IN}{all_opt_data}{A flag to indicate if intermidiate data should be collected}
+    \apiargument{IN}{all\_opt\_data}{A flag to indicate if intermediate data should be collected}
 \end{apiarguments}
 
 \apidescription{
-The \FUNC{taskInitiat}e call is invoked on the host to launch a quantum-classical task. The \FUNC{taskInitiate} call references the objective function, \VAR{objective} and the classical optimizer, \VAR{optimizer}. After launching a task the host execution continues until the host reaches a \FUNC{sync} api call. During the execution of \FUNC{taskInitiate}, optimzation iterations over \VAR{objective} parameters are performed.  Setting \VAR{all_opt_data} to \CONST{true} saves the parameters and objective function results at every iteration to be returned in \DATATYPENAME{ResultsBuffer} at a \FUNC{sync} api call.  Setting \VAR{all_opt_data} to \CONST{false} discards intermediate results and returns the optimal results.
+The \FUNC{taskInitiat}e call is invoked on the host to launch a quantum-classical task. The \FUNC{taskInitiate} call references the objective function, \VAR{objective} and the classical optimizer, \VAR{optimizer}. After launching a task the host execution continues until the host reaches a \FUNC{sync} api call. During the execution of \FUNC{taskInitiate}, optimization iterations over \VAR{objective} parameters are performed.  Setting \VAR{all\_opt\_data} to \CONST{true} saves the parameters and objective function results at every iteration to be returned in \DATATYPENAME{ResultsBuffer} at a \FUNC{sync} api call.  Setting \VAR{all\_opt\_data} to \CONST{false} discards intermediate results and returns the optimal results.
 }
 
 \apireturnvalues{
