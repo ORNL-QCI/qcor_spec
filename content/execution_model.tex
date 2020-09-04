@@ -11,7 +11,7 @@
 
 
 \subsection{\textbf{Quantum Kernels}}\label{subsec:kernel}
-\qcor extends \CorCpp by allowing the programmer to define functions, called \FUNC{kernels}, that, when called, are executed asynchronously on the quantum device. A \FUNC{kernel} is defined using the \_\_qpu\_\_ declaration specifier. A \FUNC{kernel} can optionally a accept native or user defined \CorCpp datatypes as arguments, as well as datatypes within the \qcor language extension.
+\qcor extends \CorCpp by allowing the programmer to define functions, called \FUNC{kernels}, that, when called, are executed asynchronously on the quantum device. A \FUNC{kernel} is defined using the \_\_qpu\_\_ declaration specifier. A \FUNC{kernel} can optionally accept native or user defined \CorCpp datatypes as arguments, as well as datatypes within the \qcor language extension.
 
 The \FUNC{kernel} function body should be a sequence of instructions on qbits and can also include control flow statements and predefined macros.  This circuit level expressiveness can be implemented using languages like \textit{QASM}, \textit{XASM}, and \textit{Quill}. 
 %TODO: Insert footnotes or citations for qasm, xasm and quill
