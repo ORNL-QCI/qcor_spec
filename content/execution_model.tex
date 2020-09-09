@@ -1,6 +1,6 @@
 \qcor targets an execution model whereby application execution is directed by the host with access to an attached quantum device. Applications consist of purely classical and quantum-classical expressions and routines. Figure \ref{fig:exec_model} illustrates \qcor's execution model. Applications are compiled and execute both host and quantum device code. The host device executes \qcor library calls which may consist of both classical and quantum tasks. When the host encounters a quantum kernel within the quantum-classical task, the kernel is passed to the quantum device controller. \qcor quantum-classical tasks are executed asynchronously, meaning, the host initiates the task and continues to the next statement or expression in the application without waiting for the quantum-classical task to complete.
 % Execution on the host is asynchronous to execution on the quantum device. 
-\qcor exposes initialization, synchronization, execution, and memory management library application programming interfaces (api's) to the user that enable a wide variety of hybrid quantum-classical use cases.
+\qcor exposes initialization, synchronization, execution, and memory management library \ac{APIs} to the user that enable a wide variety of hybrid quantum-classical use cases.
 
 \begin{figure*}
  \centering
