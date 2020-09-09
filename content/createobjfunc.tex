@@ -16,12 +16,12 @@
 \begin{apiarguments}
     \apiargument{IN}{op}{Operator defined for measuring the quantum kernel}
     \apiargument{IN}{quantumKernel}{pointer to the quantum kernel}
-    \apiargument{IN}{variable_parameters}{indication of the number of variables in the objective evaluation}
+    \apiargument{IN}{variable\_parameters}{indication of the number of variables in the objective evaluation}
     \apiargument{IN}{options}{a map of string to void* for including additional information}
 \end{apiarguments}
 
 \apidescription{
-        \FUNC{createObjectiveFunction} creates and initializes an instance of \DATATYPENAME{ObjectiveFunction} with a {\em Hermitian} operater, \VAR{op} and quantum kernel, \VAR{quantumKernel}.  An integer value, \VAR{variable_parameters} is also passed to \FUNC{createObjectiveFunction} to indicate the number of variable parameters to be evaluated by the objective function.  Additional information may also be provided to the objective function via \VAR{options}. For example, to leverage gradient information, you could specify for \VAR{options} the map {"gradient": "parameter shift"}, or in the case where you would like to define an additional function to evaluate the output of the operator evaluation, you could specify \VAR{options} to be {"loss function":"KL"}.
+        \FUNC{createObjectiveFunction} creates and initializes an instance of \DATATYPENAME{ObjectiveFunction} with a {\em Hermitian} operater, \VAR{op} and quantum kernel, \VAR{quantumKernel}.  An integer value, \VAR{variable\_parameters} is also passed to \FUNC{createObjectiveFunction} to indicate the number of variable parameters to be evaluated by the objective function.  Additional information may also be provided to the objective function via \VAR{options}. For example, to leverage gradient information, you could specify for \VAR{options} the map {''gradient``: ''parameter shift``}, or in the case where you would like to define an additional function to evaluate the output of the operator evaluation, you could specify \VAR{options} to be {''loss function``:''KL``}.
 }
 
 \apireturnvalues{
