@@ -5,11 +5,11 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-    void addOperation(Operator* op1, Operator* op2)
+    void addInPlaceOperation(Operator* op1, Operator* op2)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    void qcor::addOperation(Operator &op1, Operator &op2)
+    void qcor::addInPlaceOperation(Operator &op1, Operator &op2)
 \end{Cppsynopsis}
 
 
@@ -19,7 +19,7 @@
 \end{apiarguments}
 
 \apidescription{
-       The \FUNC{addOperation} routine adds \VAR{op2} to \VAR{op1}. The value of \VAR{op1} is updated to be the value of the sum.
+       The \FUNC{addInPlaceOperation} routine adds \VAR{op2} to \VAR{op1}. The value of \VAR{op1} is updated to be the value of the sum.
 }
 
 \apireturnvalues{
