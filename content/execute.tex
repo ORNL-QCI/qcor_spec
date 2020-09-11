@@ -5,37 +5,32 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-
+    void execute (Handle *hdl)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-
+    void qcor::execute (Handle *hdl)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    \apiargument{IN}{hdl}{Handle from a previously initiated quantum classical task.}
 \end{apiarguments}
 
 \apidescription{
-    
+    This re-executes the quantum-classical task associated with the \VAR{hdl}.   
+    %SP 8/4/2020: I'm confused by this descption.  
+    % 'the quantum kernel associated' - with what?
+    % why re-execute?
+    % what does it return? nothing?
 }
 
 \apireturnvalues{
-    use shmem tex files as a guide
+    None
 }      
 
 \apinotes{
-    
+    Requires a subsequent sync call to retrieve results.
 }
-
-\begin{apiexamples}
-
-\apicppexample
-    { This is a simple program that calls \FUNC{execute}: } 
-    { example_code/execute_ex.cpp} 
-    {}
-
-\end{apiexamples}
 
 \end{apidefinition}

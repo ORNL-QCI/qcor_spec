@@ -1,0 +1,32 @@
+\apisummary{
+    Allocates memory for qreg.
+}
+
+\begin{apidefinition}
+
+\begin{Csynopsis}
+    qreg* qalloc(int size)
+\end{Csynopsis}
+
+\begin{Cppsynopsis}
+    qreg* qcor::qalloc(int size)
+\end{Cppsynopsis}
+
+
+\begin{apiarguments}
+    \apiargument{IN}{size}{number of qubits}
+\end{apiarguments}
+
+\apidescription{
+        \FUNC{qalloc} allocates memory for measurement results on the host, measurement results on the quantum controller, and qubits on the quantum device.  This routines allocates (N + C)*E bits of memory on the host, N*E bits of memory on the controller and N qubits on the quantum device, where N is the number of qubits, C is the bit size of an integer on a classical system, and E is the number of experiments to be performed on the quantum device. 
+}
+
+\apireturnvalues{
+    returns a host device pointer of type \DATATYPENAME{qreg}.
+}      
+
+\apinotes{
+    The number of experiments can be set at compile time or at run time using \FUNC{set\_num\_experiments}.
+}
+
+\end{apidefinition}

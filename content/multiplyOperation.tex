@@ -1,0 +1,34 @@
+\apisummary{
+     Takes Operators and retrurns their product. 
+}
+
+\begin{apidefinition}
+
+\begin{Csynopsis}
+    Operator* multiplyOperation(Operator* op1, Operator* op2, ...)
+\end{Csynopsis}
+
+\begin{Cppsynopsis}
+    Operator* qcor::multiplyOperation(Operator &op1, Operator &op2, ...)
+\end{Cppsynopsis}
+
+
+\begin{apiarguments}
+    \apiargument{IN}{op1}{first Operator}
+    \apiargument{IN}{op2}{second Operator}
+    \apiargument{IN}{...}{additional Operators}
+\end{apiarguments}
+
+\apidescription{
+        The \FUNC{multiplyOperation} routine multiplies two or more \DATATYPENAME{Operators}.
+}
+
+\apireturnvalues{
+     Returns new instance of \DATATYPENAME{Operator}.
+}      
+
+\apinotes{
+    
+}
+
+\end{apidefinition}

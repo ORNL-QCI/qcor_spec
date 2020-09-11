@@ -1,0 +1,35 @@
+\apisummary{
+    creates a Bosonic or Fermionic field operator
+}
+
+\begin{apidefinition}
+
+\begin{Csynopsis}
+    Operator* createFieldOp(char* opType, char* relType, int siteIdx, double complex coef)
+\end{Csynopsis}
+
+\begin{Cppsynopsis}
+    Operator* qcor::createFieldOp(string opType, string relType, int siteIdx, std::complex coef)
+\end{Cppsynopsis}
+
+
+\begin{apiarguments}
+    \apiargument{IN}{opType}{a string that designates if the field operator is a creation or annihilation operator}
+    \apiargument{IN}{relType}{a string that designates if the commutation relations are either Fermionic or Bosonic}
+    \apiargument{IN}{siteIdx}{integer site index}
+    \apiargument{IN}{coef}{complex coefficient value}
+\end{apiarguments}
+
+\apidescription{
+        \FUNC{createFieldOp} creates a creation or annihilation field operator representation that is either Fermionic or Bosonic. The creation or annihilation atrribute is set by assigning the string value ``create'' or ``annihilate'', respectively, to \VAR{opType}.  The Fermionic or Bosonic attribute is set by assigning the string value ``Fermion'' or ``Boson'', respectively, to \VAR{relType}. \FUNC{createFieldOp} must also assign an integer site index via \VAR{sizeIdx}. The complex coefficient \VAR{coef} is optional, and is 1 by default. 
+}
+
+\apireturnvalues{
+    Returns a pointer to a single instance of \DATATYPENAME{Operator}.
+}      
+
+\apinotes{
+    
+}
+
+\end{apidefinition}

@@ -5,37 +5,28 @@
 \begin{apidefinition}
 
 \begin{Csynopsis}
-
+    Optimizer* createOptimizer()
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-
+    Optimizer* qcor::createOptimizer()
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{}{}{}
+    
 \end{apiarguments}
 
 \apidescription{
-    
+        \FUNC{createOptimizer} allocates memory for a single instance of \DATATYPENAME{Optimizer}.
 }
 
 \apireturnvalues{
-    use shmem tex files as a guide
+    Returns a pointer to a new \DATATYPENAME{Optimizer}.
 }      
 
 \apinotes{
     
 }
-
-\begin{apiexamples}
-
-\apicppexample
-    { This is a simple program that calls \FUNC{transform}: } 
-    { example_code/transform_ex.cpp} 
-    {}
-
-\end{apiexamples}
 
 \end{apidefinition}

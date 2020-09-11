@@ -1,20 +1,20 @@
 \apisummary{
-    
+    A synchronization call for a particular task
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-*Qresult_buf sync(Qhandle qh)
+    ResultsBuffer* sync(Handle qh)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-
+    ResultsBuffer* sync(Handle qh)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{qh}{Handle for the quantum kernel launched by the QKernelInitiate call}
+    \apiargument{IN}{qh}{Handle for the task launched by the taskInitiate call}
 \end{apiarguments}
 
 \apidescription{
@@ -22,20 +22,11 @@
 }
 
 \apireturnvalues{
-    Result vector output containing the all objective function values
+    Returns an instance of \DATATYPENAME{ResultsBuffer}.
 }      
 
 \apinotes{
     
 }
-
-\begin{apiexamples}
-
-\apicppexample
-    { This is a simple program that calls \FUNC{sync}: } 
-    { example_code/sync_ex.cpp} 
-    {}
-
-\end{apiexamples}
 
 \end{apidefinition}

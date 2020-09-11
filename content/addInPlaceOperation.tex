@@ -1,0 +1,33 @@
+\apisummary{
+    Adds a pair of Operators.
+}
+
+\begin{apidefinition}
+
+\begin{Csynopsis}
+    void addInPlaceOperation(Operator* op1, Operator* op2)
+\end{Csynopsis}
+
+\begin{Cppsynopsis}
+    void qcor::addInPlaceOperation(Operator &op1, Operator &op2)
+\end{Cppsynopsis}
+
+
+\begin{apiarguments}
+    \apiargument{IN/OUT}{op1}{left Operator}
+    \apiargument{IN}{op2}{right Operator}
+\end{apiarguments}
+
+\apidescription{
+       The \FUNC{addInPlaceOperation} routine adds \VAR{op2} to \VAR{op1}. The value of \VAR{op1} is updated to be the value of the sum.
+}
+
+\apireturnvalues{
+    None.
+}      
+
+\apinotes{
+    
+}
+
+\end{apidefinition}

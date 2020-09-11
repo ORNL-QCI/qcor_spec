@@ -1,0 +1,34 @@
+\apisummary{
+   Takes Operators and returns their sum. 
+}
+
+\begin{apidefinition}
+
+\begin{Csynopsis}
+    Operator* addOperation(Operator* op1, Operator* op2, ...)
+\end{Csynopsis}
+
+\begin{Cppsynopsis}
+    Operator* qcor::addOperation(Operator &op1, Operator &op2, ...)
+\end{Cppsynopsis}
+
+
+\begin{apiarguments}
+    \apiargument{IN}{op1}{first Operator}
+    \apiargument{IN}{op2}{second Operator}
+    \apiargument{IN}{...}{additional Operators}
+\end{apiarguments}
+
+\apidescription{
+        The \FUNC{addOperation} routine adds two or more \DATATYPENAME{Operators}.
+}
+
+\apireturnvalues{
+    Returns a new instance of \DATATYPENAME{Operator}.
+}      
+
+\apinotes{
+    
+}
+
+\end{apidefinition}

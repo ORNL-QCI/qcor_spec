@@ -1,48 +1,34 @@
 \apisummary{
- Invoked on the host to launch a quantum kernel on the quantum device.   
+ Invoked to launch a quantum-classical task. 
 }
 
 \begin{apidefinition}
 
 \begin{Csynopsis}
-Handle taskInitiate(Observable *observable, Kernel *kernel, Objective *objective, Optimizer *optimizer)
+Handle taskInitiate(ObjectiveFunction *objective, Optimizer *optimizer, bool all_opt_data)
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-Handle qcore::taskInitiate(Observable *observable, Kernel *kernel, Objective *objective, Optimizer *optimizer)
+Handle qcor::taskInitiate(ObjectiveFunction &objective, Optimizer &optimizer, bool all_opt_data)
 \end{Cppsynopsis}
 
 
 \begin{apiarguments}
-    \apiargument{IN}{observable}{A rule that defines the basis for the measurement after the kernel has been executed on the quantum hardware}
-    \apiargument{IN}{kernel}{The quantum kernel to be executed as part of the objective function evaluation}
-    % dosn't the ObjectiveFunction already contain the observable and kernels? See datatypes.tex
-    \apiargument{IN}{objective}{A parameterized user defined function transforming input data into an output result}
-    \apiargument{IN}{optimizer}{Takes an objective function as input and outputs the optimal function parameters and associated function value}
+    \apiargument{IN}{objective}{An objective function}
+    \apiargument{IN}{optimizer}{The optimization strategy}
+    \apiargument{IN}{all\_opt\_data}{A flag to indicate if intermediate data should be collected}
 \end{apiarguments}
 
 \apidescription{
-The taskInitiate call is invoked on the host to launch a quantum kernel on the quantum device. The taskInitiate call references the observable data structure, the initial quantum state, the objective function, and the classical optimizer. After a quantum kernel has been launched, host execution continues until the host reaches a sync call.    
+The \FUNC{taskInitiat}e call is invoked on the host to launch a quantum-classical task. The \FUNC{taskInitiate} call references the objective function, \VAR{objective} and the classical optimizer, \VAR{optimizer}. After launching a task the host execution continues until the host reaches a \FUNC{sync} api call. During the execution of \FUNC{taskInitiate}, optimization iterations over \VAR{objective} parameters are performed.  Setting \VAR{all\_opt\_data} to \CONST{true} saves the parameters and objective function results at every iteration to be returned in \DATATYPENAME{ResultsBuffer} at a \FUNC{sync} api call.  Setting \VAR{all\_opt\_data} to \CONST{false} discards intermediate results and returns the optimal results.
 }
 
 \apireturnvalues{
-    Handle for the quantum kernel launched by the taskInitiate call.
+    Returns a unique instance of \DATATYPENAME{Handle}.
 }      
 
 \apinotes{
-Although from a high level of abstraction, the kernel executes on the quantum
-device, with variational quantum computing the underlying implementation may iterate         
-execution between the quantumand host devices, with the host performing classical optimization based on 
-measurements from the quantum device.   
+
 }
-
-\begin{apiexamples}
-
-\apicppexample
-    { This is a simple program that calls \FUNC{taskInitiate}: } 
-    { example_code/taskInitiate_ex.cpp} 
-    {}
-
-\end{apiexamples}
 
 \end{apidefinition}

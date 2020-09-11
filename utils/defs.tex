@@ -28,17 +28,17 @@
 
 \newcommand{\newtext}[1]{\textcolor{ForestGreen}{#1}}
 \newcommand{\oldtext}[1]{\textcolor{red}{\sout{#1}}}
-\newcommand{\insertDocVersion}{1.3}
+\newcommand{\insertDocVersion}{1.0}
 \newcommand{\qcor}{\emph{QCOR}\xspace}
 \newcommand{\FUNC}[1]{\textit{#1}}
 \newcommand{\VAR}[1]{\textit{#1}}
 \newcommand{\CONST}[1]{\textit{#1}}
 \newcommand{\const}[1]{\protect\gb\protect{\textsf{\small #1}}\index{CONST:#1}}
 \newcommand{\CorCpp}{\textit{C/C++}\xspace}
-\newcommand{\Python}{\textit{Python}}
-\newcommand{\Clang}{\textit{C}}
-\newcommand{\Cpp}{\textit{C++}}
-\newcommand{\Celev}{\textit{C11}}
+\newcommand{\Python}{\textit{Python}\xspace}
+\newcommand{\Clang}{\textit{C}\xspace}
+\newcommand{\Cpp}{\textit{C++}\xspace}
+\newcommand{\Celev}{\textit{C11}\xspace}
 \newcommand{\TYPE}{\emph{TYPE}}
 \newcommand{\TYPENAME}{\emph{TYPE}}
 \newcommand{\ColHead}[1]{\textbf{#1}}
@@ -52,10 +52,7 @@
 \newcommand{\dest}{\textit{dest}}
 
 \begin{acronym}
-\acro{PE}{\emph{Processing Element}}
-\acrodefplural{PE}[PEs]{\emph{Processing Elements}}
-\acro{API}{\emph{Application Programming Interface}}
-\acro{MPI}{\emph{Message Passing Interface}}
+\acro{API}{\lowercase{a}pplication \lowercase{p}rogramming \lowercase{i}nterface}
 \acro{ORNL}{Oak Ridge National Laboratory}
 \acro{DOE}{Department of Energy}
 \acro{NISQ}{Noisy Intermediate Scale Quantum}
