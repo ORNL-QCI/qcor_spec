@@ -9,7 +9,7 @@
 \end{Csynopsis}
 
 \begin{Cppsynopsis}
-    ObjectiveFunction* qcor::createObjectiveFunction(Operator &op, void &quantumKernel, int variable_parameters, std::map<int,string>  options)
+    ObjectiveFunction* qcor::createObjectiveFunction(Operator &op, void &quantumKernel, int variable_parameters, qcor::HeterogeneousMap  &options)
 \end{Cppsynopsis}
 
 
@@ -17,7 +17,7 @@
     \apiargument{IN}{op}{Operator defined for measuring the quantum kernel}
     \apiargument{IN}{quantumKernel}{pointer to the quantum kernel}
     \apiargument{IN}{variable\_parameters}{indication of the number of variables in the objective evaluation}
-    \apiargument{IN}{options}{a map of string to void* for including additional information}
+    \apiargument{IN}{options}{a map of string to an arbitrary type for including additional information}
 \end{apiarguments}
 
 
@@ -31,8 +31,7 @@
 }      
 
 \apinotes{
-     The string:void* mapping has a seperate datatype representation for \Clang and \Cpp. The \Clang representation is a \qcor library type, \DATATYPENAME{HeterogeneousMap}.  The \Cpp representation is the \Cpp standard library type \DATATYPENAME{map}. 
- 
+     
 }
 
 \end{apidefinition}
