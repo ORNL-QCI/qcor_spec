@@ -1,0 +1,111 @@
+%hubbard_dimer_ex
+
+%define some LaTeX commands
+\newcommand{\ra}{\rangle}
+\newcommand{\la}{\langle}
+\newcommand{\ua}{ {\uparrow} }
+\newcommand{\da}{ {\downarrow} }
+\newcommand{\mb}{\mathbf}
+\renewcommand{\Im}{\operatorname{Im}}
+\renewcommand{\Re}{\operatorname{Re}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\bra}[1]{\left\langle{#1}\right\vert}
+\newcommand{\ket}[1]{\left\vert{#1}\right\rangle}
+\newcommand{\ip}[2]{\left\langle{#1}\middle\vert{#2}\right\rangle}
+\newcommand{\melem}[3]{\left\langle{#1}\middle\vert{#2}\middle\vert{#3}\right\rangle}
+\newcommand{\expval}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\op}[2]{\left\vert{#1}\middle\rangle\middle\langle{#2}\right\vert}
+%avoid package "textcomp" error messages
+\renewcommand{\textuparrow}{$\uparrow$}
+\renewcommand{\textdownarrow}{$\downarrow$}
+
+\subsubsection*{Theory Background}
+We apply the Variational Quantum Eigensolver (VQE) algorithm to solve the ground state problem of a Hubbard dimer model Hamiltonian given by
+\begin{align*}
+\hat{H} &= -t\left(
+    \hat{c}_{0\ua}^\dagger \hat{c}_{1\ua}^{\phantom{\dagger}} +
+    \hat{c}_{1\ua}^\dagger \hat{c}_{0\ua}^{\phantom{\dagger}} +
+    \hat{c}_{0\da}^\dagger \hat{c}_{1\da}^{\phantom{\dagger}} + 
+    \hat{c}_{1\da}^\dagger \hat{c}_{0\da}^{\phantom{\dagger}}\right) +
+    U\left(\hat{n}_{0\ua} \hat{n}_{0\da} + \hat{n}_{1\ua} \hat{n}_{1\da}\right) -
+    \mu\left(\hat{n}_{0\ua}+\hat{n}_{1\ua}+\hat{n}_{0\da}+\hat{n}_{1\da}\right),  
+\end{align*}
+where the electron density operator $\hat{n}_{i\sigma} = \hat{c}_{i\sigma}^\dagger \hat{c}_{i\sigma}^{\phantom{\dagger}}$. In $\hat{H}$, we choose $t$ as the units of energy so we can set $t = 1$. Since we consider half-filled dimer, $\mu = \frac{U}{2}$. Here, $i\in\{0,1\}$ is the label of two lattice sites of the dimer model and $\sigma\in \{\ua,\da\}$ is the label for the physical spin of the electrons described by our model; together they constitute 4 fermion modes $\{\ket{i\sigma} = c_{i\sigma}^\dagger\ket{} \mid i \in \{0,1\},\sigma\in \{\ua,\da\} \}$. We map these 4 fermion modes to 4 qubits $\{\ket{q_0}, \ket{q_1}, \ket{q_2}, \ket{q_3}\}$ as follows: $(0\ua, 1\ua, 0\da,1\da) \to (0, 1, 2, 3)$. Under this mapping, the Hamiltonian becomes
+\begin{align*}
+\hat{H} &= -t\left(
+    \hat{c}_{0}^\dagger \hat{c}_{1}^{\phantom{\dagger}} +
+    \hat{c}_{1}^\dagger \hat{c}_{0}^{\phantom{\dagger}} +
+    \hat{c}_{2}^\dagger \hat{c}_{3}^{\phantom{\dagger}} + 
+    \hat{c}_{3}^\dagger \hat{c}_{2}^{\phantom{\dagger}}\right) +
+    U\left(\hat{n}_{0} \hat{n}_{2} + \hat{n}_{1} \hat{n}_{3}\right) -
+    \mu\left(\hat{n}_{0}+\hat{n}_{1}+\hat{n}_{2}+\hat{n}_{3}\right).  
+\end{align*}
+
+Here, we only consider the nonmagnetic ground state for half-filled dimer, which means $\la \hat{n}_{0\ua}+\hat{n}_{1\ua} \ra = \la \hat{n}_{0\da}+\hat{n}_{1\da} \ra = 1$, i.e., $\la \hat{n}_{0}+\hat{n}_{1} \ra = \la \hat{n}_{2}+\hat{n}_{3} \ra = 1$. Therefore, the ground state must have the form
+\begin{align*}
+  \ket{\psi} = a_{1}\ket{1010} + a_{2}\ket{0101} + a_{3}\ket{0110} + a_{4}\ket{1001},
+\end{align*}
+which can be used as a variational form to find the ground state energy and state vector. Such form can be prepared with the unitary coupled cluster (UCC) method, where we combine the excitation ($\hat{T}$) and de-excitation ($\hat{T}^\dagger$) operators into a unitary operator $e^{\hat{T} - \hat{T}^\dagger} \equiv e^{\hat{A}}$ and apply it to a reference state, for example $\ket{\psi_0} = \ket{1010}$, resulting the following UCC ansatz $\ket{\psi} = e^{\hat{A}}\ket{1010}$. For our problem, we only need three excitation/de-excitation operators as follows.
+\begin{align*}
+  \text{singles term ($\da$): }
+    & \hat{A}^{(1)}(\theta_0) = \theta_0(
+    \hat{c}_{3}^{\dagger}\hat{c}_{2}^{\phantom{\dagger}} -
+    \hat{c}_{2}^{\dagger}\hat{c}_{3}^{\phantom{\dagger}} ), \\
+  \text{singles term ($\ua$): }
+    & \hat{A}^{(1)}(\theta_1) = \theta_1(
+    \hat{c}_{1}^{\dagger}\hat{c}_{0}^{\phantom{\dagger}} -
+    \hat{c}_{0}^{\dagger}\hat{c}_{1}^{\phantom{\dagger}} ), \\    
+  \text{doubles term: }
+    & \hat{A}^{(2)}(\theta_2) = \theta_2(
+    \hat{c}_{1}^{\dagger}\hat{c}_{3}^{\dagger}\hat{c}_{2}^{\phantom{\dagger}}\hat{c}_{0}^{\phantom{\dagger}} -
+    \hat{c}_{0}^{\dagger}\hat{c}_{2}^{\dagger}\hat{c}_{3}^{\phantom{\dagger}}\hat{c}_{1}^{\phantom{\dagger}}),
+\end{align*}
+where the superscripts $(1)$ and $(2)$ indicate the singles and doubles term, respectively, and three real parameters (also referred as rotation angles) $(\theta_0, \theta_1, \theta_2) \equiv \vec{\theta}$ are determined by variational algorithm.
+
+Instead of the conventional UCC $U(\vec{\theta}) = e^{\hat{A}(\vec{\theta})} = e^{\hat{A}^{(1)}(\theta_0)  + \hat{A}^{(1)}(\theta_1)  + \hat{A}^{(2)}(\theta_2)}$ that requires Trotter decomposition approximation to implement on quantum computer, we adopt a different type of UCC, called factorized UCC, where the unitary operator is expressed as $U(\vec{\theta}) = e^{\hat{A}^{(1)}(\theta_0)} e^{\hat{A}^{(1)}(\theta_1)} e^{\hat{A}^{(2)}(\theta_2)}$. We call the above factorized UCC (112) order as indicated by the \emph{superscripts}.
+
+The factorized UCC is equally capable to generate ansatz states giving \emph{exact} result as the conventional UCC. To construct an exact ansatz, the conventional UCC might need the excitation/de-excitation operators up to the rank that is equal to the number of electrons in the system. However, the factorized UCC can exploit the degree of freedoms in ordering the factors and thus it is possible to construct an exact ansatz using only low rank excitation/de-excitation operators, such as singles and doubles only. Therefore, we will also test the factorized UCC with (211) order $U(\vec{\theta}) = e^{\hat{A}^{(2)}(\theta_2)} e^{\hat{A}^{(1)}(\theta_0)} e^{\hat{A}^{(1)}(\theta_1)}$ and (121) order $U(\vec{\theta}) = e^{\hat{A}^{(1)}(\theta_0)} e^{\hat{A}^{(2)}(\theta_2)} e^{\hat{A}^{(1)}(\theta_1)}$.
+
+
+\subsubsection*{Implementation and Simulation with QCOR}
+We will use QCOR to:
+\begin{itemize}[topsep=0pt,itemsep=0pt,partopsep=0pt, parsep=0pt]
+\item Implement the quantum circuit for the factorized UCC operator $U(\vec{\theta})$.
+\item Prepare the ansatz state $\ket{\psi(\vec{\theta})} = U(\vec{\theta})\ket{\psi_0}$.
+\item Make measurements of the Hamiltonian $E(\vec{\theta}) = \melem{\psi(\vec{\theta})} {\hat{H}} {\psi(\vec{\theta})}$.
+\item Minimize the objective function to find the ground state energy $E_g = \min_{\vec{\theta}} E(\vec{\theta})$.
+\end{itemize}
+The entire code \mintinline{bash}{hubbard_dimer_ex.cpp} is included at the end. To compile and run a quick test, use the command:
+\mintinline{bash}{qcor hubbard_dimer_ex.cpp && ./a.out}
+
+More examples on compiling and running the code are as follows.\\[-0.5cm]
+\begin{minted}[bgcolor=gray]{bash}
+# ideal simulation with Quantum++ (default)
+qcor -qpu qpp hubbard_dimer_ex.cpp && ./a.out
+# noisy simulation with Quantum++
+qcor -qpu qpp -shots 1024 hubbard_dimer_ex.cpp && ./a.out
+# ideal simulation with Qiskit Aer statevector simulator
+qcor -qpu aer[sim-type:statevector] hubbard_dimer_ex.cpp && ./a.out
+# set U = 7.5, UCC factor order = 112, number of layers = 2
+qcor hubbard_dimer_ex.cpp && ./a.out --U 7.5 --order 112 --layer 2
+\end{minted}
+
+There are some interesting results we can find with this example code. For $U=7.5$, the exact ground state energy is $E_g = -8$ for the half-filled Hubbard dimer. Run the following four cases.
+\begin{enumerate}[label=(\arabic*),topsep=0pt,itemsep=0pt,partopsep=0pt, parsep=0pt]
+\item \mintinline{bash}{./a.out --U 7.5 --order 211 --layer 1}
+\item \mintinline{bash}{./a.out --U 7.5 --order 121 --layer 1}
+\item \mintinline{bash}{./a.out --U 7.5 --order 112 --layer 1}
+\item \mintinline{bash}{./a.out --U 7.5 --order 112 --layer 2}
+\end{enumerate}
+In Case (3), the factorized UCC ansatz with (112) order fails to give the exact ground state. The reason why this ansatz fails is given in Refs. [\ref{Evangelista2019}] and [\ref{Izmaylov2020}]. Only if we add a second layer as in Case (4), it manages to give the exact result. Adding additional layers is a technique also used in hardware efficient ansatz, but there are some differences in our ansatz, which include (i) our layer consists of UCC ansatz that has the apparent physical meaning of exciting and de-exciting particles to different fermion modes; (ii) for the Hubbard dimer model, using the same variational parameters in the second layer as those of the first layer is sufficient to give the exact result, as shown by Case (4). However, the fact the second layer having the same variational parameters should not be construed as the ansatz in Case (4) being a two-step Trotter approximation since the exact result is guaranteed, which is not expected for two-step Trotter approximation.
+
+\begin{enumerate}[label={[\arabic*]},ref={\arabic*},leftmargin=*,align=left,topsep=0pt,itemsep=0pt,partopsep=2pt, parsep=0pt]
+\hypersetup{urlcolor=blue}
+\item \label{Evangelista2019}
+F. A. Evangelista, G. K.-L. Chan, and G. E. Scuseria, \href{https://doi.org/10.1063/1.5133059}{J. Chem. Phys. \textbf{151}, 244112 (2019)}.
+\item \label{Izmaylov2020}
+A. F. Izmaylov, M. D\'{i}az-Tinoco, and R. A. Lang, \href{https://doi.org/10.1039/D0CP01707H}{Phys. Chem. Chem. Phys. \textbf{22}, 12980 (2020)}.
+\end{enumerate}
+
+\inputminted[autogobble,fontsize=\footnotesize,linenos,bgcolor=gray]{cpp}{example_code/hubbard_dimer_ex.cpp}
