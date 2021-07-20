@@ -18,13 +18,10 @@ weight: 10
 - Quantum code expression via quantum kernels
 
 [Execution Model](exec_model.md)
-- Multi-modal
 - Hardware-agnostic
+- Multi-modal
 
 [Data Model](data_model.md)
-- `qubit`
-- `qreg`
-- Quantum Kernel API
 - Variational Data Model
   - Heterogeneous Map
   - Operator
