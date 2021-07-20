@@ -23,7 +23,7 @@ __qpu__ void PrepareStateUsingRUS(qreg q, int maxIter) {
   // We limit the max number of RUS iterations.
   for (int i = 0; i < maxIter; ++i) {
     Tdg(r);
-    CNOT(q, r);
+    X::ctrl(q, r);
     T(r);
 
     // In order to measure in the PauliX basis, changes the basis.

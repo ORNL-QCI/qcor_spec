@@ -5,12 +5,6 @@ draft: false
 weight: 15
 ---
 
-## qubit
-
-## qreg 
-
-## Quantum Kernel API
-
 ## Variational Data Model
 Due to the ubiquity of variational quantum algorithms in near-term quantum computation, the QCOR language specification puts forward novel data-types that enable efficient programming of quantum-classical variational algorithms. We specify the structure of these types here: 
 
