@@ -28,5 +28,35 @@ The language extension should provide the following `Operator` creation API:
 ### Optimizer
 `Optimizer` represents a data-type encapsulating an optimization strategy executed on a given `ObjectiveFunction`. Specically the `Optimizer` exposes a member function, `optimize`, that takes as input an `ObjectiveFunction` argument and computes its optimal value and parameters which are returned as either a pair or tuple. The language extension should also enable the ability to use the `optimize()` method on any general function instance, as long as the function argument structure is correct. The correct structure should be `double(std::vector<double>,std::vector<double>&)` (as an example in C++), where the first vector is the input parameters and the second is a reference to the gradient vector. 
 
+### Example Usage
 
+```cpp
+__qpu__ void ansatz(qreg q, double theta) {
+  X(q[0]);
+  auto exponent_op = X(0) * Y(1) - Y(0) * X(1);
+  exp_i_theta(q, theta, exponent_op);
+}
 
+int main(int argc, char **argv) {
+  // Allocate 2 qubits
+  auto q = qalloc(2);
+
+  // Create the Deuteron Hamiltonian
+  auto H = 5.907 - 2.1433 * X(0) * X(1) - 2.1433 * Y(0) * Y(1) + .21829 * Z(0) -
+           6.125 * Z(1);
+  
+  // Create the objective function
+  auto objective = createObjectiveFunction(ansatz, H, q, 1);
+
+  // Create a qcor Optimizer
+  auto optimizer = createOptimizer("nlopt");
+
+  // Optimize the above function
+  auto [optval, opt_params] = optimizer->optimize(objective);
+
+  // Print the result
+  printf("energy = %f\n", optval);
+
+  return 0;
+}
+```
