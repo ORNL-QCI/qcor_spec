@@ -7,7 +7,7 @@ weight: 15
 
 qcor enables the programming of heterogeneous quantum-classical computing tasks, whereby programmers are free to leverage both classical and quantum processors to achieve some hybrid workflow goal. One can think of the types of hybrid quantum-classical programs that qcor enables as sitting on a spectrum with purely classical codes on one end and purely quantum codes on the other (with required classical driver code). Our programming model enables one to program across this spectrum, thereby enabling a language expression mechanism for near-term, noisy intermediate-scale as well as future fault-tolerant quantum tasks. 
 
-qcor requires that specification implementors extend classical programming languages with support for quantum in a single-source manner. This requirement directly promotes familiarity and usability for domain computational scientist, and lowers the learning curve for separate quantum and classical compiler workflows and manual integration to produce quantum-classical executables. This single-source language extension approach enables quantum-classical tasks to be constructed using high level classical language syntax via intrinsic library calls and compiler preprocessor directives. 
+qcor requires that specification implementors extend classical programming languages with support for quantum coprocessors in a single-source manner. This requirement directly promotes familiarity and usability for domain computational scientist, and lowers the learning curve for separate quantum and classical compiler workflows and manual integration to produce quantum-classical executables. This single-source language extension approach enables quantum-classical tasks to be constructed using high level classical language syntax via intrinsic library calls and compiler preprocessor directives. 
 
 ### Allocating Quantum Memory
 
@@ -39,20 +39,19 @@ __qpu__ void kernel(qreg q, int n) {
 
 ### Quantum Kernels
 
-To adhere to the single-source requirement promoted by qcor, quantum code intended for compilation and execution targeting a desired quantum coprocessor should be expressed as typical callables in the source 
-language being extended. Examples of this would be standard functions in C++, Python, Julia, etc., closures/lambdas in C++, or structs with `operator()()` defined in C++. Quantum kernels provided as standard functions or lambdas should be able to reference and call previously defined or declared classical functions, classical global variables, and quantum kernels. Quantum kernels provided as lambdas should be able to capture classical variables from parent scope. Quantum kernel lambdas should not be able to capture quantum data (`qreg`). All quantum data must be provided to the quantum kernel via function argument (except for in-kernel, stack-allocated `qreg` instances). 
+To adhere to the single-source requirement promoted by qcor, quantum code intended for compilation and execution targeting a desired quantum coprocessor should be expressed as typical callables in the source language being extended. Examples of this would be standard functions in C++, Python, Julia, etc., closures/lambdas in C++, or structs with `operator()()` defined in C++. Quantum kernels provided as standard functions or lambdas should be able to reference and call previously defined or declared classical functions, classical global variables, and quantum kernels. Quantum kernels provided as lambdas should be able to capture classical variables from parent scope. Quantum kernel lambdas should not be able to capture quantum data (`qreg`). All quantum data must be provided to the quantum kernel via function argument (except for in-kernel, stack-allocated `qreg` instances). 
 
 The quantum kernel function signature can have any structure, however, the return type must be `void`. The body of the callable should contain code expressing the quantum program to be executed on the quantum coprocessor. The function body language is the native language being extended (for classical control flow and classical data allocation), plus the invocation of [Quantum Intrinsic Operations](#q-intr), [common quantum programming patterns](#q-patterns), or [unitary matrix decompositions](#q-unitary). As a native language extension, the qcor programming model specifies that any classical control flow be available within quantum kernel definitions. Programmers should be able to fully use `for` and `while` loops (for example) as expected, as well as `if` statements (`if {} else {}`, etc.), even in the case of conditional sub-circuit execution based on qubit measurement feedback. 
 
 Quantum kernels, as functional callables, should also be able to be passed as parameters to other function-like objects (or other quantum kernels). A typical use case for this would be the development of a generic quantum algorithm that is parameterized on some oracle (which would be expressed as some other quantum kernel). 
 
-Defined quantum kernels should expose a public API that produces related quantum kernels. By related quantum kernels, we mean new quantum kernels that are defined in relation to the original kernel. Methods that must be on the quantum kernel are (here we use static method definitions, but one could also use instance methods (`.`) as well): 
+Defined quantum kernels should expose a public API that produces related quantum kernels, or kernel-specific metadata. By related quantum kernels, we mean new quantum kernels that are defined in relation to the original kernel. Methods that must be on the quantum kernel are (here we use static method definitions, but one could also use instance methods (`.`) as well): 
 - `kernel::ctrl( qubit*, Args...)`, which takes an array-like of `qubits` (e.g. C++ implementation may use `std::vector<qubit>`) as the control qubits, takes all usual kernel arguments
 - `kernel::adjoint(Args...)`, which takes the original kernel arguments but applies the reverse of the kernel, or adjoint
 - `kernel::observe(Operator*, Args...)` to take an unmeasured kernel and return the expected value of the given [`Operator`](data_model.md) at the provided kernel arguments.
 - `kernel::print(Stream&, Args...)` to print a QASM-like representation of the defined kernel in the native gateset of the target backend. 
 
-Quantum kernels can be invoked from other quantum kernles, enabling a hierarchical representation of complex programs as well as the integration of pre-developed quantum library code (e.g. libraries for quantum Fourier transformations, Hadamard and Swap tests, etc.). The specification denotes a quantum kernel that is called from host classical code as an **entry-point quantum kernel**, in order to differentiate itself from quantum kernels invoked from other quantum kernels. All entry-point quantum kernels must take at least one `qreg` or `qubit` instance in order to ensure that downstream classical code can retrieve quantum execution results. 
+Quantum kernels can be invoked from other quantum kernels, enabling a hierarchical representation of complex programs as well as the integration of pre-developed quantum library code (e.g. libraries for quantum Fourier transformations, Hadamard and Swap tests, etc.). The specification denotes a quantum kernel that is called from host classical code as an **entry-point quantum kernel**, in order to differentiate itself from quantum kernels invoked from other quantum kernels. All entry-point quantum kernels must take at least one `qreg` or `qubit` instance in order to ensure that downstream classical code can retrieve quantum execution results. 
 
 #### <a id="q-intr"></a>Quantum Intrinsic Operations and Expressions
 
@@ -80,7 +79,6 @@ int main() {
 }
 ```
 
-
 ##### <a id="q-patterns"></a> Compute-Action-Uncompute
 The specification requires that implementations enable novel syntax within quantum kernels for the ubiquitous **compute-action-uncompute** pattern. Given unitary operations `U`, `V` on `N` qubits, the sequence `U V U^` (here, `U^` is the adjoint of `U`) represents a common pattern across a number of quantum algorithms, where we have **compute**` == U`, **action**` == V`, and **uncompute**` == U^`. Implementations are required to enable the expression of this pattern via keywords in the language extension: **compute** `COMPUTE SCOPE` **action** `ACTION SCOPE`. The intent is to ease expression of redundant quantum code, but also to promote compiler optimizations in the case of `W::ctrl(...), W == U V U^` (here `W::ctrl(...) == U V::ctrl(...) U^` instead of the naive `U::ctrl(...) V::ctrl(...) U^::ctrl(...)`). In a C++ language extension adherent to this specification, this pattern might look like this:
 ```cpp
@@ -97,19 +95,36 @@ int main() {
   };
 }
 ```
-which the compiler implementation would expand to `H(q) X(q) Z::ctrl(...) X(q) H(q)`, and any quantum code that called `foo::ctrl(...)` would result only in a control on the existing `controlled-Z`. 
+Here, the compiler implementation would expand this to `H(q) X(q) Z::ctrl(...) X(q) H(q)`, and any quantum code that called `foo::ctrl(...)` would result only in a control on the existing `controlled-Z`. 
 
 ##### <a id="q-unitary"></a>Unitary Matrix Decomposition
 The specification requires that implementations enable the expression of circuit synthesis from defined unitary matrices, enabling one to program quantum code at the matrix-level and let the compiler decompose into native gates for the quantum coprocessor. This is enabled via a **decompose** `MATRIX SCOPE` `(ARGS...)`  expression, where `MATRIX SCOPE` contains the code describing the unitary matrix to be decomposed. The explicit circuit synthesis strategy is left up to concrete language implementations. The `ARGS...` must start with the `qubit` or `qreg` that the operation is to be applied to, and can contain any other circuit synthesis pertinent arguments. In a C++ language extension adherent to this specification, this expression might look like this:
 ```cpp
-__qpu__ void foo(qreg q) {
-    decompose {
-      // Create the unitary matrix
-      UnitaryMatrix ccnot_mat = UnitaryMatrix::Identity(8, 8);
-      ccnot_mat(6, 6) = 0.0;
-      ccnot_mat(7, 7) = 0.0;
-      ccnot_mat(6, 7) = 1.0;
-      ccnot_mat(7, 6) = 1.0;
-    }(q);
+// Fermionic Simulation gate:
+// FSimGate(θ, φ) = 
+// [[1, 0, 0, 0],
+//  [0, a, b, 0],
+//  [0, b, a, 0],
+//  [0, 0, 0, c]]
+// where:
+// a = cos(theta)
+// b = -i·sin(theta)
+// c = exp(-i·phi)
+__qpu__ void FSimGate(qubit q0, qubit q1, double theta, double phi) {
+  std::vector<qubit> qubits{q0, q1};
+  qreg q(qubits);
+  auto a = std::cos(theta);
+  auto b = std::complex<double>{ 0.0, -std::sin(theta)};
+  auto c = std::exp(std::complex<double>{ 0.0, -phi});
+  // Decompose using KAK
+  decompose {
+    // Create the unitary matrix
+    UnitaryMatrix fsim_mat = UnitaryMatrix::Identity(4, 4);
+    fsim_mat(1, 1) = a;
+    fsim_mat(1, 2) = b;
+    fsim_mat(2, 1) = b;
+    fsim_mat(2, 2) = a;
+    fsim_mat(3, 3) = c;
+  }(q, kak);
 }
 ```  

@@ -26,7 +26,7 @@ weight: 10
 - `qreg`
 - Quantum Kernel API
 - Variational Data Model
+  - Heterogeneous Map
   - Operator
   - Objective Function
-  - Heterogeneous Map
   - Optimizer
